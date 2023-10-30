@@ -1,0 +1,3 @@
+/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/datalogging.dir
+/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/edit_cache.dir
+/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/rebuild_cache.dir

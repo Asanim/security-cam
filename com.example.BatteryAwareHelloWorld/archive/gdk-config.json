@@ -1,0 +1,22 @@
+{
+  "component": {
+    "com.example.pubsubtest/": {
+      "author": "Synapse Automota",
+      "version": "0.0.1",
+      "build": {
+        "build_system": "custom",
+        "custom_build_command": [
+          "bash",
+          "scripts/build-custom.sh",
+          "com.example.pubsubtest/",
+          "0.0.1"
+        ]
+      },
+      "publish": {
+        "bucket": "greengrass-component-artifacts",
+        "region": "ap-southeast-2"
+      }
+    }
+  },
+  "gdk_version": "1.3.0"
+}
