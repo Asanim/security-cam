@@ -4,6 +4,7 @@
         "stdexcept": "cpp",
         "optional": "cpp",
         "system_error": "cpp",
-        "__node_handle": "cpp"
+        "__node_handle": "cpp",
+        "iostream": "cpp"
     }
 }

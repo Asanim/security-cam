@@ -5,4 +5,4 @@ cd src/build
 
 cmake .. 
 make 
-cp datalogging ../../
+cp datalogging ../../greengrass-build/artifacts/$COMPONENT_NAME/$COMPONENT_VERSION

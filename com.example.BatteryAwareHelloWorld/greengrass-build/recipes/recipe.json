@@ -1,7 +1,7 @@
 {
     "RecipeFormatVersion": "2020-01-25",
     "ComponentName": "com.example.BatteryAwareHelloWorld",
-    "ComponentVersion": "0.0.1",
+    "ComponentVersion": "0.0.2",
     "ComponentDescription": "This Hello World component defers updates when the battery level is below a threshold.",
     "ComponentPublisher": "Synapse Automota",
     "ComponentConfiguration": {

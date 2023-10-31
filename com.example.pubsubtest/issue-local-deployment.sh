@@ -16,7 +16,7 @@ export AWS_REGION=ap-southeast-2
 export THING_GROUP=Robot
 export AWS_ACCOUNT_ID=$(aws sts get-caller-identity | jq -r '.Account')
 export BUCKET_NAME="greengrass-component-artifacts"
-export COMPONENT_NAME="com.example.pubsubtest/"
+export COMPONENT_NAME="com.example.pubsubtest"
 export COMPONENT_AUTHOR="Synapse Automota"
 
 envsubst < "./aws-deployment-templates/recipe.json.template" > "recipe.json"
@@ -24,6 +24,8 @@ envsubst < "./aws-deployment-templates/recipe.json.template" > "recipe.json"
 envsubst < "./aws-deployment-templates/gdk-config.json.template" > "gdk-config.json"
 
 gdk component build
+
+# envsubst < "./aws-deployment-templates/recipe.json.template" > "./greengrass-build/recipes/recipe.json"
 
 sudo /greengrass/v2/bin/greengrass-cli deployment create \
   --recipeDir ./greengrass-build/recipes \
