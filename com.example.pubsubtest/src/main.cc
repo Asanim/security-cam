@@ -143,11 +143,13 @@ int main() {
     exit(-1);
   }
 
-  String topic("test_topic");
+  String subscribeTopic("test/subscribe");
+  String publishTopic("test/publish");
+  String publishTopicPayload("Test message payload");
   int timeout = 10;
 
   SubscribeToTopicRequest request;
-  request.SetTopic(topic);
+  request.SetTopic(subscribeTopic);
 
   // SubscribeResponseHandler streamHandler;
   auto streamHandler = MakeShared<SubscribeResponseHandler>(DefaultAllocator());
@@ -161,9 +163,18 @@ int main() {
 
   activate.wait();
   
+  // Publish to topic 
+      // Publish to the same topic that is currently subscribed to.
+    auto publishOperation = ipcClient.NewPublishToIoTCore();
+    PublishToIoTCoreRequest publishRequest;
+    publishRequest.SetTopicName(publishTopic);
+    Vector<uint8_t> payload(publishTopicPayload.begin(), publishTopicPayload.end());
+    publishRequest.SetPayload(payload);
+    publishRequest.SetQos(QOS_AT_LEAST_ONCE);
 
   // Keep the main thread alive, or the process will exit.
   while (true) {
+    // Subscribe
     auto responseFuture = operation->GetResult();
     if (responseFuture.wait_for(std::chrono::seconds(timeout)) == std::future_status::timeout) {
       std::cerr << "Operation timed out while waiting for response from Greengrass Core." << std::endl;
@@ -184,7 +195,34 @@ int main() {
       exit(-1);
     }
 
-    std::this_thread::sleep_for(std::chrono::seconds(10));
+    // Publish
+    std::cout << "Attempting to publish to" << publishTopic.c_str() << "topic\n";
+    auto requestStatus = publishOperation->Activate(publishRequest).get();
+    if (!requestStatus)
+      std::cerr << "Failed to publish to " << publishTopic.c_str() << " topic with error "<< requestStatus.StatusToString().c_str();
+
+    auto publishResultFuture = publishOperation->GetResult();
+    auto publishResult = publishResultFuture.get();
+    if (publishResult)
+    {
+        std::cout << "Successfully published to "<< publishTopic.c_str() <<" topic\n";
+        auto *response = publishResult.GetOperationResponse();
+        (void)response;
+    } else {
+        auto errorType = publishResult.GetResultType();
+        if (errorType == OPERATION_ERROR)
+        {
+            OperationError *error = publishResult.GetOperationError();
+            if (error->GetMessage().has_value())
+                std::cout << "Greengrass Core responded with an error: " << error->GetMessage().value().c_str();
+        }
+        else
+        {
+          std::cout << "Attempting to receive the response from the server failed with error code %s\n" << publishResult.GetRpcError().StatusToString().c_str();
+        }
+    }
+
+    std::this_thread::sleep_for(std::chrono::seconds(60));
   }
 
   operation->Close();
