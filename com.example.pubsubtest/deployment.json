@@ -1,17 +1,11 @@
 {
-    "targetArn": "arn:aws:iot:ap-southeast-2:315305972961:thinggroup/Robot",
+    "targetArn": "arn:aws:iot:ap-southeast-2:326946543261:thinggroup/Development",
     "deploymentName": "Automated deployment",
     "components": {
         "aws.greengrass.Nucleus": {
             "componentVersion": "2.11.1",
             "configurationUpdate": {
                 "merge": "{\"interpolateComponentConfiguration\":\"true\",\"mqtt\":{\"spooler\":{\"storageType\":\"Disk\",\"maxSizeInBytes\":\"500000000\"}},\"logging\":{\"level\":\"ERROR\",\"fileSizeKB\":\"1024\",\"totalLogsSizeKB\":\"25000000\",\"outputDirectory\":\"/mnt/ssd/log/greengrass/\"}}"
-            }
-        },
-        "aws.greengrass.LogManager": {
-            "componentVersion": "2.3.5",
-            "configurationUpdate": {
-                "merge": "{\"logsUploaderConfiguration\": {\"systemLogsConfiguration\": {\"uploadToCloudWatch\": true, \"minimumLogLevel\": \"ERROR\", \"diskSpaceLimit\": 10, \"diskSpaceLimitUnit\": \"MB\", \"deleteLogFileAfterCloudUpload\": false}, \"componentLogsConfigurationMap\": {\"com.prmeng.SentinelVision\": {\"minimumLogLevel\": \"ERROR\", \"diskSpaceLimit\": 20, \"diskSpaceLimitUnit\": \"MB\", \"deleteLogFileAfterCloudUpload\": false}, \"aws.greengrass.SecureTunneling\": {\"minimumLogLevel\": \"ERROR\", \"diskSpaceLimit\": 20, \"diskSpaceLimitUnit\": \"MB\", \"deleteLogFileAfterCloudUpload\": false}, \"aws.greengrass.Nucleus\": {\"minimumLogLevel\": \"ERROR\", \"diskSpaceLimit\": 20, \"diskSpaceLimitUnit\": \"MB\", \"deleteLogFileAfterCloudUpload\": false}}, \"periodicUploadIntervalSec\": 300, \"deprecatedVersionSupport\": false, \"pythonVersion\": \"3.7\"}}}"
             }
         },
         "aws.greengrass.SecureTunneling": {

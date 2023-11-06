@@ -13,22 +13,25 @@ fi
 # Define environment variables
 export COMPONENT_VERSION="$1"
 export AWS_REGION=ap-southeast-2
-export THING_GROUP=Robot
+export THING_GROUP=Development
 export AWS_ACCOUNT_ID=$(aws sts get-caller-identity | jq -r '.Account')
-export BUCKET_NAME="greengrass-component-artifacts-ap-southeast-2-315305972961"
-export COMPONENT_NAME="com.example.pubsubtest/"
+export BUCKET_NAME="greengrass-component-artifacts"
+export COMPONENT_NAME="com.example.pubsubtest"
 export COMPONENT_AUTHOR="Sam Taylor"
 
-# # Create 'recipe.json' using environment variables
-# envsubst < "./scripts/aws-deployment-templates/recipe.json.template" > "recipe.json"
-# cat recipe.json
+# Create 'recipe.json' using environment variables
+envsubst < "./aws-deployment-templates/recipe.json.template" > "recipe.json"
+envsubst < "./aws-deployment-templates/recipe.json.template" > "./greengrass-build/recipes/recipe.json"
 
-# # Create 'gdk-config.json' using environment variables
-# envsubst < "./scripts/aws-deployment-templates/gdk-config.json.template" > "gdk-config.json"
-# cat gdk-config.json
+cat recipe.json
+
+# Create 'gdk-config.json' using environment variables
+envsubst < "./aws-deployment-templates/gdk-config.json.template" > "gdk-config.json"
+cat gdk-config.json
 
 # Build and publish the component
 gdk component build
+envsubst < "./aws-deployment-templates/recipe.json.template" > "./greengrass-build/recipes/recipe.json"
 gdk component publish
 
 # Create 'deployment.json' using environment variables
