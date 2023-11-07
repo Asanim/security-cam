@@ -11,8 +11,11 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -O3 -g -fpic -fpie -fpermissive -std=c++
 # Find OpenCV
 find_package(OpenCV REQUIRED)
 
+# Find CUDA
+find_package(CUDA REQUIRED)
+
 # Include CUDA directories
-include_directories(/usr/local/cuda/include)
+include_directories(${CUDA_INCLUDE_DIRS})
 
 # Add system-specific include directories
 MESSAGE(STATUS "CMAKE_HOST_SYSTEM_PROCESSOR is ${CMAKE_HOST_SYSTEM_PROCESSOR}")
@@ -33,4 +36,4 @@ elseif(${CMAKE_HOST_SYSTEM_PROCESSOR} STREQUAL "x86_64")
 endif()
 
 link_directories(/usr/lib/ /usr/local/lib/ /usr/local/cuda/lib64/ /usr/local/cuda/lib/)
-target_link_libraries(SecurityCam ${OpenCV_LIBS} nvinfer nvinfer_plugin nvparsers nvonnxparser cudart)
+target_link_libraries(SecurityCam ${OpenCV_LIBS} ${CUDA_LIBRARIES} nvinfer nvinfer_plugin nvparsers nvonnxparser)
