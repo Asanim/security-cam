@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 
 # Usage:
 # Run this script from the root of the repo with the desired COMPONENT_VERSION parameter.

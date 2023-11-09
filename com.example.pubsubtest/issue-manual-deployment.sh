@@ -38,4 +38,4 @@ gdk component publish
 envsubst < "./aws-deployment-templates/deployment.json.template" > "deployment.json"
 
 # Create the deployment in AWS Greengrass
-aws greengrassv2 create-deployment --cli-input-json file://deployment.json --region ${AWS_REGION}
+# aws greengrassv2 create-deployment --cli-input-json file://deployment.json --region ${AWS_REGION}
