@@ -25,6 +25,19 @@ class Logger : public nvinfer1::ILogger {
 const int INPUT_SIZE = 300 * 300 * 3; // Adjusted for SSD input size
 const int OUTPUT_SIZE = 1000; // Adjust as needed for SSD output size
 
+void drawDetections(cv::Mat& frame, const float* detections, int numDetections) {
+    for (int i = 0; i < numDetections; ++i) {
+        float confidence = detections[i * 7 + 2];
+        if (confidence > 0.5) { // Confidence threshold
+            int x1 = static_cast<int>(detections[i * 7 + 3] * frame.cols);
+            int y1 = static_cast<int>(detections[i * 7 + 4] * frame.rows);
+            int x2 = static_cast<int>(detections[i * 7 + 5] * frame.cols);
+            int y2 = static_cast<int>(detections[i * 7 + 6] * frame.rows);
+            cv::rectangle(frame, cv::Point(x1, y1), cv::Point(x2, y2), cv::Scalar(0, 255, 0), 2);
+        }
+    }
+}
+
 int main() {
     // Open the webcam
     cv::VideoCapture cap(0);
@@ -85,6 +98,8 @@ int main() {
         float output[OUTPUT_SIZE];
         cudaMemcpy(output, buffers[1], OUTPUT_SIZE * sizeof(float), cudaMemcpyDeviceToHost);
 
+        // Draw detections on the frame
+        drawDetections(frame, output, OUTPUT_SIZE / 7);
 
         // Display the frame
         cv::imshow("Webcam", frame);
