@@ -2,14 +2,14 @@
   "component": {
     "com.example.pubsubtest": {
       "author": "Synapse Automota",
-      "version": "0.0.10",
+      "version": "0.0.2",
       "build": {
         "build_system": "custom",
         "custom_build_command": [
           "bash",
           "build-custom.sh",
           "com.example.pubsubtest",
-          "0.0.10"
+          "0.0.2"
         ]
       },
       "publish": {

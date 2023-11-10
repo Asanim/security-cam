@@ -1,7 +1,7 @@
 {
 	"RecipeFormatVersion": "2020-01-25",
 	"ComponentName": "com.example.pubsubtest",
-	"ComponentVersion": "0.0.10",
+	"ComponentVersion": "0.0.2",
 	"ComponentDescription": "Sentinel Vision - Personnel proximity detection system for mobile machinery",
 	"ComponentPublisher": "Synapse Automota",
     "ComponentConfiguration": {
@@ -29,11 +29,15 @@
 			},
 			"Artifacts": [
 				{
-					"URI": "s3://greengrass-component-artifacts/com.example.pubsubtest/0.0.10/datalogging",
+					"URI": "s3://greengrass-component-artifacts/com.example.pubsubtest/0.0.2/source.tar.gz",
 					"Unarchive": "NONE"
 				}
 			],
 			"Lifecycle": {
+				"Install": {
+					"RequiresPrivilege": "true",
+					"Script": "ls {artifacts:path} && {artifacts:decompressedPath} && tar -xvzf {artifacts:path}/source.tar.gz"
+				},
 				"run": "{artifacts:path}/datalogging"
 			}
 		}

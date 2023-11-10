@@ -26,9 +26,9 @@ envsubst < "./aws-deployment-templates/gdk-config.json.template" > "gdk-config.j
 gdk component build
 
 envsubst < "./aws-deployment-templates/recipe.json.template" > "./greengrass-build/recipes/recipe.json"
+envsubst < "./aws-deployment-templates/recipe.json.template" > "./greengrass-build/recipes/$COMPONENT_NAME-$COMPONENT_VERSION.json"
 
 sudo /greengrass/v2/bin/greengrass-cli deployment create \
   --recipeDir ./greengrass-build/recipes \
   --artifactDir ./greengrass-build/artifacts \
   --merge "com.example.pubsubtest=$COMPONENT_VERSION"
-

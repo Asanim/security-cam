@@ -29,11 +29,15 @@
 			},
 			"Artifacts": [
 				{
-					"URI": "s3://$BUCKET_NAME/$COMPONENT_NAME/$COMPONENT_VERSION/datalogging",
+					"URI": "s3://$BUCKET_NAME/$COMPONENT_NAME/$COMPONENT_VERSION/source.tar.gz",
 					"Unarchive": "NONE"
 				}
 			],
 			"Lifecycle": {
+				"Install": {
+					"RequiresPrivilege": "true",
+					"Script": "ls {artifacts:path} && {artifacts:decompressedPath} && tar -xvzf {artifacts:path}/source.tar.gz"
+				},
 				"run": "{artifacts:path}/datalogging"
 			}
 		}
