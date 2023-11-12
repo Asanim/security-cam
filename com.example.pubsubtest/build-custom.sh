@@ -6,5 +6,5 @@ cd src/build
 cmake .. 
 make 
 
-tar -czf source.tar.gz datalogging
-cp source.tar.gz ../../greengrass-build/artifacts/$COMPONENT_NAME/$COMPONENT_VERSION
+# tar -czf source.tar.gz datalogging
+# cp source.tar.gz ../../greengrass-build/artifacts/$COMPONENT_NAME/$COMPONENT_VERSION

@@ -19,16 +19,35 @@ export BUCKET_NAME="greengrass-component-artifacts"
 export COMPONENT_NAME="com.example.pubsubtest"
 export COMPONENT_AUTHOR="Synapse Automota"
 
-envsubst < "./aws-deployment-templates/recipe.json.template" > "recipe.json"
+# Manually create greengrass build without relying in the gdk for local build
+rm -rf greengrass-build
+mkdir -p greengrass-build/recipes
+mkdir -p greengrass-build/artifacts
+mkdir -p greengrass-build/artifacts/$COMPONENT_NAME/$COMPONENT_VERSION/
 
-envsubst < "./aws-deployment-templates/gdk-config.json.template" > "gdk-config.json"
+envsubst < "./aws-deployment-templates/recipe-local.json.template" > "./greengrass-build/recipes/$COMPONENT_NAME-$COMPONENT_VERSION.json"
+./build-custom.sh
 
-gdk component build
+cp src/build/datalogging greengrass-build/artifacts/$COMPONENT_NAME/$COMPONENT_VERSION/
 
-envsubst < "./aws-deployment-templates/recipe.json.template" > "./greengrass-build/recipes/recipe.json"
-envsubst < "./aws-deployment-templates/recipe.json.template" > "./greengrass-build/recipes/$COMPONENT_NAME-$COMPONENT_VERSION.json"
-
-sudo /greengrass/v2/bin/greengrass-cli deployment create \
+# Run the deployment create command
+deployment_output=$(sudo /greengrass/v2/bin/greengrass-cli deployment create \
   --recipeDir ./greengrass-build/recipes \
   --artifactDir ./greengrass-build/artifacts \
-  --merge "com.example.pubsubtest=$COMPONENT_VERSION"
+  --merge "$COMPONENT_NAME=$COMPONENT_VERSION")
+
+# Check if the deployment submission was successful
+if [[ $deployment_output =~ Deployment\ Id:\ ([0-9a-fA-F-]+) ]]; then
+    deployment_id="${BASH_REMATCH[1]}"
+    echo "Deployment submitted! Deployment Id: $deployment_id"
+
+    # Run the deployment status command with the obtained deployment ID
+    while true; do
+        sudo /greengrass/v2/bin/greengrass-cli deployment status -i "$deployment_id"
+        sleep 1
+    done
+else
+    echo "Error submitting deployment."
+fi
+
+

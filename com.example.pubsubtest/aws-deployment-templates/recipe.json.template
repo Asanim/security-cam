@@ -34,11 +34,7 @@
 				}
 			],
 			"Lifecycle": {
-				"Install": {
-					"RequiresPrivilege": "true",
-					"Script": "ls {artifacts:path} && {artifacts:decompressedPath} && tar -xvzf {artifacts:path}/source.tar.gz"
-				},
-				"run": "{artifacts:path}/datalogging"
+				"Run": "{artifacts:path}/datalogging"
 			}
 		}
 	]
