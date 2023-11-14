@@ -150,59 +150,23 @@ int main() {
     std::cerr << "Failed to establish IPC connection: " << connectionStatus.StatusToString() << std::endl;
     exit(-1);
   }
+  int i = 0;
 
-  String subscribeTopic("test/subscribe");
   String publishTopic("test/publish");
-  String publishTopicPayload("Test message payload");
   int timeout = 10;
 
-  SubscribeToTopicRequest request;
-  request.SetTopic(subscribeTopic);
 
-  // SubscribeResponseHandler streamHandler;
-  auto streamHandler = MakeShared<SubscribeResponseHandler>(DefaultAllocator());
-  auto operation = ipcClient.NewSubscribeToTopic(streamHandler);
-
-  auto activate = operation->Activate(request, nullptr);
-
-  // TODO subscribe to component updates
-  auto updatesHandler = MakeShared<SubscribeUpdatesHandler>(DefaultAllocator());
-  ipcClient.NewSubscribeToComponentUpdates(updatesHandler);
-
-  activate.wait();
-  
-  // Publish to topic 
-      // Publish to the same topic that is currently subscribed to.
+  // Keep the main thread alive, or the process will exit.
+  while (true) {
+    std::string publishTopicPayload = R"({"message": "Test message payload )" + std::to_string(i) + R"("})";
+    // Publish to topic 
     auto publishOperation = ipcClient.NewPublishToIoTCore();
     PublishToIoTCoreRequest publishRequest;
     publishRequest.SetTopicName(publishTopic);
     Vector<uint8_t> payload(publishTopicPayload.begin(), publishTopicPayload.end());
     publishRequest.SetPayload(payload);
     publishRequest.SetQos(QOS_AT_LEAST_ONCE);
-
-  // Keep the main thread alive, or the process will exit.
-  while (true) {
-    // Subscribe
-    auto responseFuture = operation->GetResult();
-    if (responseFuture.wait_for(std::chrono::seconds(timeout)) == std::future_status::timeout) {
-      std::cerr << "Operation timed out while waiting for response from Greengrass Core." << std::endl;
-      exit(-1);
-    }
-
-    auto response = responseFuture.get();
-    if (!response) {
-      // Handle error.
-      auto errorType = response.GetResultType();
-      if (errorType == OPERATION_ERROR) {
-        auto *error = response.GetOperationError();
-        (void)error;
-        // Handle operation error.
-      } else {
-        // Handle RPC error.
-      }
-      exit(-1);
-    }
-
+    
     // Publish
     std::cout << "Attempting to publish to" << publishTopic.c_str() << "topic\n";
     auto requestStatus = publishOperation->Activate(publishRequest).get();
@@ -232,7 +196,5 @@ int main() {
 
     std::this_thread::sleep_for(std::chrono::seconds(60));
   }
-
-  operation->Close();
   return 0;
 }

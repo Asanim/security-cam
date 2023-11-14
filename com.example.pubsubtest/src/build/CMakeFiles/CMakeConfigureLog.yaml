@@ -61,21 +61,21 @@ events:
     checks:
       - "Detecting C compiler ABI info"
     directories:
-      source: "/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-VUSXjj"
-      binary: "/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-VUSXjj"
+      source: "/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-xqQN8E"
+      binary: "/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-xqQN8E"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
     buildResult:
       variable: "CMAKE_C_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-VUSXjj'
+        Change Dir: '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-xqQN8E'
         
-        Run Build Command(s): /home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_8dd3a/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_8dd3a.dir/build.make CMakeFiles/cmTC_8dd3a.dir/build
-        gmake[1]: Entering directory '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-VUSXjj'
-        Building C object CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o
-        /usr/bin/cc   -v -o CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o -c /home/sam/.local/lib/python3.11/site-packages/cmake/data/share/cmake-3.27/Modules/CMakeCCompilerABI.c
+        Run Build Command(s): /home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_36bb3/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_36bb3.dir/build.make CMakeFiles/cmTC_36bb3.dir/build
+        gmake[1]: Entering directory '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-xqQN8E'
+        Building C object CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o
+        /usr/bin/cc   -v -o CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o -c /home/sam/.local/lib/python3.11/site-packages/cmake/data/share/cmake-3.27/Modules/CMakeCCompilerABI.c
         Using built-in specs.
         COLLECT_GCC=/usr/bin/cc
         OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
@@ -85,8 +85,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 12.3.0 (Ubuntu 12.3.0-1ubuntu1~23.04) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8dd3a.dir/'
-         /usr/lib/gcc/x86_64-linux-gnu/12/cc1 -quiet -v -imultiarch x86_64-linux-gnu /home/sam/.local/lib/python3.11/site-packages/cmake/data/share/cmake-3.27/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_8dd3a.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccxQezeu.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_36bb3.dir/'
+         /usr/lib/gcc/x86_64-linux-gnu/12/cc1 -quiet -v -imultiarch x86_64-linux-gnu /home/sam/.local/lib/python3.11/site-packages/cmake/data/share/cmake-3.27/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_36bb3.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccTYe6Gs.s
         GNU C17 (Ubuntu 12.3.0-1ubuntu1~23.04) version 12.3.0 (x86_64-linux-gnu)
         	compiled by GNU C version 12.3.0, GMP version 6.2.1, MPFR version 4.2.0, MPC version 1.3.1, isl version isl-0.25-GMP
         
@@ -106,15 +106,15 @@ events:
         
         GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
         Compiler executable checksum: d9353c3f0a32d3e91a16ba312e2a9024
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8dd3a.dir/'
-         as -v --64 -o CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o /tmp/ccxQezeu.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_36bb3.dir/'
+         as -v --64 -o CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o /tmp/ccTYe6Gs.s
         GNU assembler version 2.40 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.40
         COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.'
-        Linking C executable cmTC_8dd3a
-        /home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8dd3a.dir/link.txt --verbose=1
-        /usr/bin/cc  -v -rdynamic CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o -o cmTC_8dd3a 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.'
+        Linking C executable cmTC_36bb3
+        /home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_36bb3.dir/link.txt --verbose=1
+        /usr/bin/cc  -v -rdynamic CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o -o cmTC_36bb3 
         Using built-in specs.
         COLLECT_GCC=/usr/bin/cc
         COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper
@@ -127,10 +127,10 @@ events:
         gcc version 12.3.0 (Ubuntu 12.3.0-1ubuntu1~23.04) 
         COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_8dd3a' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_8dd3a.'
-         /usr/lib/gcc/x86_64-linux-gnu/12/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper -plugin-opt=-fresolution=/tmp/ccc1K67L.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_8dd3a /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/12 -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/12/../../.. CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/12/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crtn.o
-        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_8dd3a' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_8dd3a.'
-        gmake[1]: Leaving directory '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-VUSXjj'
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_36bb3' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_36bb3.'
+         /usr/lib/gcc/x86_64-linux-gnu/12/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZj3wyM.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_36bb3 /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/12 -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/12/../../.. CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/12/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_36bb3' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_36bb3.'
+        gmake[1]: Leaving directory '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-xqQN8E'
         
       exitCode: 0
   -
@@ -164,13 +164,13 @@ events:
     message: |
       Parsed C implicit link information:
         link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        ignore line: [Change Dir: '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-VUSXjj']
+        ignore line: [Change Dir: '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-xqQN8E']
         ignore line: []
-        ignore line: [Run Build Command(s): /home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_8dd3a/fast]
-        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_8dd3a.dir/build.make CMakeFiles/cmTC_8dd3a.dir/build]
-        ignore line: [gmake[1]: Entering directory '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-VUSXjj']
-        ignore line: [Building C object CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o]
-        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o -c /home/sam/.local/lib/python3.11/site-packages/cmake/data/share/cmake-3.27/Modules/CMakeCCompilerABI.c]
+        ignore line: [Run Build Command(s): /home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_36bb3/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_36bb3.dir/build.make CMakeFiles/cmTC_36bb3.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-xqQN8E']
+        ignore line: [Building C object CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o]
+        ignore line: [/usr/bin/cc   -v -o CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o -c /home/sam/.local/lib/python3.11/site-packages/cmake/data/share/cmake-3.27/Modules/CMakeCCompilerABI.c]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/cc]
         ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
@@ -180,8 +180,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 12.3.0 (Ubuntu 12.3.0-1ubuntu1~23.04) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8dd3a.dir/']
-        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/12/cc1 -quiet -v -imultiarch x86_64-linux-gnu /home/sam/.local/lib/python3.11/site-packages/cmake/data/share/cmake-3.27/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_8dd3a.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccxQezeu.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_36bb3.dir/']
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/12/cc1 -quiet -v -imultiarch x86_64-linux-gnu /home/sam/.local/lib/python3.11/site-packages/cmake/data/share/cmake-3.27/Modules/CMakeCCompilerABI.c -quiet -dumpdir CMakeFiles/cmTC_36bb3.dir/ -dumpbase CMakeCCompilerABI.c.c -dumpbase-ext .c -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccTYe6Gs.s]
         ignore line: [GNU C17 (Ubuntu 12.3.0-1ubuntu1~23.04) version 12.3.0 (x86_64-linux-gnu)]
         ignore line: [	compiled by GNU C version 12.3.0  GMP version 6.2.1  MPFR version 4.2.0  MPC version 1.3.1  isl version isl-0.25-GMP]
         ignore line: []
@@ -201,15 +201,15 @@ events:
         ignore line: []
         ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
         ignore line: [Compiler executable checksum: d9353c3f0a32d3e91a16ba312e2a9024]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8dd3a.dir/']
-        ignore line: [ as -v --64 -o CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o /tmp/ccxQezeu.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_36bb3.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o /tmp/ccTYe6Gs.s]
         ignore line: [GNU assembler version 2.40 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.40]
         ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.']
-        ignore line: [Linking C executable cmTC_8dd3a]
-        ignore line: [/home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8dd3a.dir/link.txt --verbose=1]
-        ignore line: [/usr/bin/cc  -v -rdynamic CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o -o cmTC_8dd3a ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o' '-c' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.']
+        ignore line: [Linking C executable cmTC_36bb3]
+        ignore line: [/home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_36bb3.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/cc  -v -rdynamic CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o -o cmTC_36bb3 ]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/cc]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper]
@@ -222,13 +222,13 @@ events:
         ignore line: [gcc version 12.3.0 (Ubuntu 12.3.0-1ubuntu1~23.04) ]
         ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_8dd3a' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_8dd3a.']
-        link line: [ /usr/lib/gcc/x86_64-linux-gnu/12/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper -plugin-opt=-fresolution=/tmp/ccc1K67L.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_8dd3a /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/12 -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/12/../../.. CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/12/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_36bb3' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_36bb3.']
+        link line: [ /usr/lib/gcc/x86_64-linux-gnu/12/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper -plugin-opt=-fresolution=/tmp/ccZj3wyM.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_36bb3 /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/12 -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/12/../../.. CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o -lgcc --push-state --as-needed -lgcc_s --pop-state -lc -lgcc --push-state --as-needed -lgcc_s --pop-state /usr/lib/gcc/x86_64-linux-gnu/12/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crtn.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/12/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/ccc1K67L.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/ccZj3wyM.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -247,7 +247,7 @@ events:
           arg [-znow] ==> ignore
           arg [-zrelro] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_8dd3a] ==> ignore
+          arg [cmTC_36bb3] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o]
@@ -259,7 +259,7 @@ events:
           arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
           arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
           arg [-L/usr/lib/gcc/x86_64-linux-gnu/12/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/12/../../..]
-          arg [CMakeFiles/cmTC_8dd3a.dir/CMakeCCompilerABI.c.o] ==> ignore
+          arg [CMakeFiles/cmTC_36bb3.dir/CMakeCCompilerABI.c.o] ==> ignore
           arg [-lgcc] ==> lib [gcc]
           arg [--push-state] ==> ignore
           arg [--as-needed] ==> ignore
@@ -299,21 +299,21 @@ events:
     checks:
       - "Detecting CXX compiler ABI info"
     directories:
-      source: "/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-Siov6U"
-      binary: "/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-Siov6U"
+      source: "/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-9vDqNC"
+      binary: "/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-9vDqNC"
     cmakeVariables:
       CMAKE_CXX_FLAGS: ""
     buildResult:
       variable: "CMAKE_CXX_ABI_COMPILED"
       cached: true
       stdout: |
-        Change Dir: '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-Siov6U'
+        Change Dir: '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-9vDqNC'
         
-        Run Build Command(s): /home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_79ff0/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_79ff0.dir/build.make CMakeFiles/cmTC_79ff0.dir/build
-        gmake[1]: Entering directory '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-Siov6U'
-        Building CXX object CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o
-        /usr/bin/c++   -v -o CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o -c /home/sam/.local/lib/python3.11/site-packages/cmake/data/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp
+        Run Build Command(s): /home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_04a37/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_04a37.dir/build.make CMakeFiles/cmTC_04a37.dir/build
+        gmake[1]: Entering directory '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-9vDqNC'
+        Building CXX object CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o
+        /usr/bin/c++   -v -o CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o -c /home/sam/.local/lib/python3.11/site-packages/cmake/data/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp
         Using built-in specs.
         COLLECT_GCC=/usr/bin/c++
         OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa
@@ -323,8 +323,8 @@ events:
         Thread model: posix
         Supported LTO compression algorithms: zlib zstd
         gcc version 12.3.0 (Ubuntu 12.3.0-1ubuntu1~23.04) 
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_79ff0.dir/'
-         /usr/lib/gcc/x86_64-linux-gnu/12/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /home/sam/.local/lib/python3.11/site-packages/cmake/data/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_79ff0.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccyBRVMF.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_04a37.dir/'
+         /usr/lib/gcc/x86_64-linux-gnu/12/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /home/sam/.local/lib/python3.11/site-packages/cmake/data/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_04a37.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccKvRTho.s
         GNU C++17 (Ubuntu 12.3.0-1ubuntu1~23.04) version 12.3.0 (x86_64-linux-gnu)
         	compiled by GNU C version 12.3.0, GMP version 6.2.1, MPFR version 4.2.0, MPC version 1.3.1, isl version isl-0.25-GMP
         
@@ -348,15 +348,15 @@ events:
         
         GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072
         Compiler executable checksum: 16d8e9c7f95d1b20c28ab711ca7df821
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_79ff0.dir/'
-         as -v --64 -o CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccyBRVMF.s
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_04a37.dir/'
+         as -v --64 -o CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccKvRTho.s
         GNU assembler version 2.40 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.40
         COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.'
-        Linking CXX executable cmTC_79ff0
-        /home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_79ff0.dir/link.txt --verbose=1
-        /usr/bin/c++  -v -rdynamic CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_79ff0 
+        COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.'
+        Linking CXX executable cmTC_04a37
+        /home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_04a37.dir/link.txt --verbose=1
+        /usr/bin/c++  -v -rdynamic CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_04a37 
         Using built-in specs.
         COLLECT_GCC=/usr/bin/c++
         COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper
@@ -369,10 +369,10 @@ events:
         gcc version 12.3.0 (Ubuntu 12.3.0-1ubuntu1~23.04) 
         COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/
         LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../:/lib/:/usr/lib/
-        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_79ff0' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_79ff0.'
-         /usr/lib/gcc/x86_64-linux-gnu/12/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper -plugin-opt=-fresolution=/tmp/ccPqXJ4r.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_79ff0 /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/12 -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/12/../../.. CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/12/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crtn.o
-        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_79ff0' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_79ff0.'
-        gmake[1]: Leaving directory '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-Siov6U'
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_04a37' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_04a37.'
+         /usr/lib/gcc/x86_64-linux-gnu/12/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper -plugin-opt=-fresolution=/tmp/cc8r72Gr.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_04a37 /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/12 -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/12/../../.. CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/12/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crtn.o
+        COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_04a37' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_04a37.'
+        gmake[1]: Leaving directory '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-9vDqNC'
         
       exitCode: 0
   -
@@ -412,13 +412,13 @@ events:
     message: |
       Parsed CXX implicit link information:
         link line regex: [^( *|.*[/\\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\\]+-)?ld|collect2)[^/\\]*( |$)]
-        ignore line: [Change Dir: '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-Siov6U']
+        ignore line: [Change Dir: '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-9vDqNC']
         ignore line: []
-        ignore line: [Run Build Command(s): /home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_79ff0/fast]
-        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_79ff0.dir/build.make CMakeFiles/cmTC_79ff0.dir/build]
-        ignore line: [gmake[1]: Entering directory '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-Siov6U']
-        ignore line: [Building CXX object CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o]
-        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o -c /home/sam/.local/lib/python3.11/site-packages/cmake/data/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp]
+        ignore line: [Run Build Command(s): /home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_04a37/fast]
+        ignore line: [/usr/bin/gmake  -f CMakeFiles/cmTC_04a37.dir/build.make CMakeFiles/cmTC_04a37.dir/build]
+        ignore line: [gmake[1]: Entering directory '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-9vDqNC']
+        ignore line: [Building CXX object CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o]
+        ignore line: [/usr/bin/c++   -v -o CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o -c /home/sam/.local/lib/python3.11/site-packages/cmake/data/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/c++]
         ignore line: [OFFLOAD_TARGET_NAMES=nvptx-none:amdgcn-amdhsa]
@@ -428,8 +428,8 @@ events:
         ignore line: [Thread model: posix]
         ignore line: [Supported LTO compression algorithms: zlib zstd]
         ignore line: [gcc version 12.3.0 (Ubuntu 12.3.0-1ubuntu1~23.04) ]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_79ff0.dir/']
-        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/12/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /home/sam/.local/lib/python3.11/site-packages/cmake/data/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_79ff0.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccyBRVMF.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_04a37.dir/']
+        ignore line: [ /usr/lib/gcc/x86_64-linux-gnu/12/cc1plus -quiet -v -imultiarch x86_64-linux-gnu -D_GNU_SOURCE /home/sam/.local/lib/python3.11/site-packages/cmake/data/share/cmake-3.27/Modules/CMakeCXXCompilerABI.cpp -quiet -dumpdir CMakeFiles/cmTC_04a37.dir/ -dumpbase CMakeCXXCompilerABI.cpp.cpp -dumpbase-ext .cpp -mtune=generic -march=x86-64 -version -fasynchronous-unwind-tables -fstack-protector-strong -Wformat -Wformat-security -fstack-clash-protection -fcf-protection -o /tmp/ccKvRTho.s]
         ignore line: [GNU C++17 (Ubuntu 12.3.0-1ubuntu1~23.04) version 12.3.0 (x86_64-linux-gnu)]
         ignore line: [	compiled by GNU C version 12.3.0  GMP version 6.2.1  MPFR version 4.2.0  MPC version 1.3.1  isl version isl-0.25-GMP]
         ignore line: []
@@ -453,15 +453,15 @@ events:
         ignore line: []
         ignore line: [GGC heuristics: --param ggc-min-expand=100 --param ggc-min-heapsize=131072]
         ignore line: [Compiler executable checksum: 16d8e9c7f95d1b20c28ab711ca7df821]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_79ff0.dir/']
-        ignore line: [ as -v --64 -o CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccyBRVMF.s]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_04a37.dir/']
+        ignore line: [ as -v --64 -o CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o /tmp/ccKvRTho.s]
         ignore line: [GNU assembler version 2.40 (x86_64-linux-gnu) using BFD version (GNU Binutils for Ubuntu) 2.40]
         ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.']
-        ignore line: [Linking CXX executable cmTC_79ff0]
-        ignore line: [/home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_79ff0.dir/link.txt --verbose=1]
-        ignore line: [/usr/bin/c++  -v -rdynamic CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_79ff0 ]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o' '-c' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.']
+        ignore line: [Linking CXX executable cmTC_04a37]
+        ignore line: [/home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_04a37.dir/link.txt --verbose=1]
+        ignore line: [/usr/bin/c++  -v -rdynamic CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o -o cmTC_04a37 ]
         ignore line: [Using built-in specs.]
         ignore line: [COLLECT_GCC=/usr/bin/c++]
         ignore line: [COLLECT_LTO_WRAPPER=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper]
@@ -474,13 +474,13 @@ events:
         ignore line: [gcc version 12.3.0 (Ubuntu 12.3.0-1ubuntu1~23.04) ]
         ignore line: [COMPILER_PATH=/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/]
         ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-linux-gnu/12/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib/:/lib/x86_64-linux-gnu/:/lib/../lib/:/usr/lib/x86_64-linux-gnu/:/usr/lib/../lib/:/usr/lib/gcc/x86_64-linux-gnu/12/../../../:/lib/:/usr/lib/]
-        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_79ff0' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_79ff0.']
-        link line: [ /usr/lib/gcc/x86_64-linux-gnu/12/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper -plugin-opt=-fresolution=/tmp/ccPqXJ4r.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_79ff0 /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/12 -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/12/../../.. CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/12/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crtn.o]
+        ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_04a37' '-shared-libgcc' '-mtune=generic' '-march=x86-64' '-dumpdir' 'cmTC_04a37.']
+        link line: [ /usr/lib/gcc/x86_64-linux-gnu/12/collect2 -plugin /usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so -plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper -plugin-opt=-fresolution=/tmp/cc8r72Gr.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --eh-frame-hdr -m elf_x86_64 --hash-style=gnu --as-needed -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -pie -z now -z relro -o cmTC_04a37 /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o /usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o -L/usr/lib/gcc/x86_64-linux-gnu/12 -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu -L/usr/lib/gcc/x86_64-linux-gnu/12/../../../../lib -L/lib/x86_64-linux-gnu -L/lib/../lib -L/usr/lib/x86_64-linux-gnu -L/usr/lib/../lib -L/usr/lib/gcc/x86_64-linux-gnu/12/../../.. CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-linux-gnu/12/crtendS.o /usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crtn.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/12/collect2] ==> ignore
           arg [-plugin] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/12/liblto_plugin.so] ==> ignore
           arg [-plugin-opt=/usr/lib/gcc/x86_64-linux-gnu/12/lto-wrapper] ==> ignore
-          arg [-plugin-opt=-fresolution=/tmp/ccPqXJ4r.res] ==> ignore
+          arg [-plugin-opt=-fresolution=/tmp/cc8r72Gr.res] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
           arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
           arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -499,7 +499,7 @@ events:
           arg [-znow] ==> ignore
           arg [-zrelro] ==> ignore
           arg [-o] ==> ignore
-          arg [cmTC_79ff0] ==> ignore
+          arg [cmTC_04a37] ==> ignore
           arg [/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/Scrt1.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/12/../../../x86_64-linux-gnu/crti.o]
           arg [/usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o] ==> obj [/usr/lib/gcc/x86_64-linux-gnu/12/crtbeginS.o]
@@ -511,7 +511,7 @@ events:
           arg [-L/usr/lib/x86_64-linux-gnu] ==> dir [/usr/lib/x86_64-linux-gnu]
           arg [-L/usr/lib/../lib] ==> dir [/usr/lib/../lib]
           arg [-L/usr/lib/gcc/x86_64-linux-gnu/12/../../..] ==> dir [/usr/lib/gcc/x86_64-linux-gnu/12/../../..]
-          arg [CMakeFiles/cmTC_79ff0.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+          arg [CMakeFiles/cmTC_04a37.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
           arg [-lstdc++] ==> lib [stdc++]
           arg [-lm] ==> lib [m]
           arg [-lgcc_s] ==> lib [gcc_s]
@@ -556,25 +556,25 @@ events:
     checks:
       - "Performing Test CMAKE_HAVE_LIBC_PTHREAD"
     directories:
-      source: "/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-4jqSHI"
-      binary: "/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-4jqSHI"
+      source: "/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-x3A2cm"
+      binary: "/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-x3A2cm"
     cmakeVariables:
       CMAKE_C_FLAGS: ""
     buildResult:
       variable: "CMAKE_HAVE_LIBC_PTHREAD"
       cached: true
       stdout: |
-        Change Dir: '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-4jqSHI'
+        Change Dir: '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-x3A2cm'
         
-        Run Build Command(s): /home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_7f432/fast
-        /usr/bin/gmake  -f CMakeFiles/cmTC_7f432.dir/build.make CMakeFiles/cmTC_7f432.dir/build
-        gmake[1]: Entering directory '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-4jqSHI'
-        Building C object CMakeFiles/cmTC_7f432.dir/src.c.o
-        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_7f432.dir/src.c.o -c /home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-4jqSHI/src.c
-        Linking C executable cmTC_7f432
-        /home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_7f432.dir/link.txt --verbose=1
-        /usr/bin/cc -rdynamic CMakeFiles/cmTC_7f432.dir/src.c.o -o cmTC_7f432 
-        gmake[1]: Leaving directory '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-4jqSHI'
+        Run Build Command(s): /home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E env VERBOSE=1 /usr/bin/gmake -f Makefile cmTC_83b02/fast
+        /usr/bin/gmake  -f CMakeFiles/cmTC_83b02.dir/build.make CMakeFiles/cmTC_83b02.dir/build
+        gmake[1]: Entering directory '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-x3A2cm'
+        Building C object CMakeFiles/cmTC_83b02.dir/src.c.o
+        /usr/bin/cc -DCMAKE_HAVE_LIBC_PTHREAD   -o CMakeFiles/cmTC_83b02.dir/src.c.o -c /home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-x3A2cm/src.c
+        Linking C executable cmTC_83b02
+        /home/sam/.local/lib/python3.11/site-packages/cmake/data/bin/cmake -E cmake_link_script CMakeFiles/cmTC_83b02.dir/link.txt --verbose=1
+        /usr/bin/cc -rdynamic CMakeFiles/cmTC_83b02.dir/src.c.o -o cmTC_83b02 
+        gmake[1]: Leaving directory '/home/sam/greengrass-components/com.example.pubsubtest/src/build/CMakeFiles/CMakeScratch/TryCompile-x3A2cm'
         
       exitCode: 0
 ...
