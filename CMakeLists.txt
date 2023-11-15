@@ -26,7 +26,7 @@ elseif(${CMAKE_HOST_SYSTEM_PROCESSOR} STREQUAL "x86_64")
 endif()
 
 # Add executable
-add_executable(SecurityCam main.cpp)
+add_executable(SecurityCam main.cpp yolov7.cpp)
 
 # Link libraries
 if (${CMAKE_HOST_SYSTEM_PROCESSOR} STREQUAL "aarch64")
