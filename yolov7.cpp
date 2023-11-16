@@ -23,7 +23,7 @@
  // https://github.com/NVIDIA-AI-IOT/yolo_deepstream/blob/main/tensorrt_yolov7/src/Yolov7.cpp
 
 
- #include "Yolov7.h"
+ #include "yolov7.h"
 
  static const char* cocolabels[] = {
      "person", "bicycle", "car", "motorcycle", "airplane",

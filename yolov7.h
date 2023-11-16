@@ -38,7 +38,6 @@
 #include "NvInfer.h"
 #include <vector>
 #include <NvInferPlugin.h>
-#include <tools.h>
 #include <fstream>
 #include <algorithm>
 #include <numeric>
