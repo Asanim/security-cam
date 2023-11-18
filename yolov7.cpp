@@ -25,7 +25,7 @@
 
  #include "yolov7.h"
 
- static const char* cocolabels[] = {
+ static const char* kYoloLabels[] = {
      "person", "bicycle", "car", "motorcycle", "airplane",
      "bus", "train", "truck", "boat", "traffic light", "fire hydrant",
      "stop sign", "parking meter", "bench", "bird", "cat", "dog", "horse",
@@ -415,7 +415,7 @@
          std::tie(color[0], color[1], color[2]) = random_color(class_label);
          cv::rectangle(bgr_img, cv::Point(left, top), cv::Point(right, bottom), color, 3);
  
-         auto name      = cocolabels[class_label];
+         auto name      = kYoloLabels[class_label];
          auto caption   = cv::format("%s %.2f", name, confidence);
          int text_width = cv::getTextSize(caption, 0, 1, 2, nullptr).width + 10;
          cv::rectangle(bgr_img, cv::Point(left-3, top-33), cv::Point(left + text_width, top), color, -1);
