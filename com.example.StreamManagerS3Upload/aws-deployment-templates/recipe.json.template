@@ -6,7 +6,7 @@
 	"ComponentPublisher": "$COMPONENT_AUTHOR",
 	"ComponentConfiguration": {
 		"DefaultConfiguration": {
-	      "Config": "None"
+	      "UploadDirectory": "/tmp/upload/"
 		}
 	},
 	"Manifests": [
@@ -25,7 +25,7 @@
 				"RequiresPrivilege": "false",
 				"Script": "pip3 install stream_manager"
 			},
-			"Run": "python3 -u {artifacts:decompressedPath}/$COMPONENT_NAME/main.py {configuration:/Message}"
+			"Run": "python3 -u {artifacts:decompressedPath}/$COMPONENT_NAME/main.py {configuration:/UploadDirectory}"
 		}
 	}
 	]
