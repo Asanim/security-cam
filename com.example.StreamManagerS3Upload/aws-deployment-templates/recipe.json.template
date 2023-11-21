@@ -1,0 +1,32 @@
+{
+	"RecipeFormatVersion": "2020-01-25",
+	"ComponentName": "$COMPONENT_NAME",
+	"ComponentVersion": "$COMPONENT_VERSION",
+	"ComponentDescription": "Stream Manager Example",
+	"ComponentPublisher": "$COMPONENT_AUTHOR",
+	"ComponentConfiguration": {
+		"DefaultConfiguration": {
+	      "Config": "None"
+		}
+	},
+	"Manifests": [
+		{
+		"Platform": {
+			"os": "all"
+		},
+		"Artifacts": [
+			{
+			"URI": "s3://$BUCKET_NAME/$COMPONENT_NAME/$COMPONENT_VERSION/$COMPONENT_NAME.zip",
+			"Unarchive": "ZIP"
+			}
+		],
+		"Lifecycle": {
+			"Install": {
+				"RequiresPrivilege": "false",
+				"Script": "pip3 install stream_manager"
+			},
+			"Run": "python3 -u {artifacts:decompressedPath}/$COMPONENT_NAME/main.py {configuration:/Message}"
+		}
+	}
+	]
+}

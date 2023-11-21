@@ -1,0 +1,29 @@
+{
+    "targetArn": "arn:aws:iot:$AWS_REGION:$AWS_ACCOUNT_ID:thinggroup/$THING_GROUP",
+    "deploymentName": "Automated deployment",
+    "components": {
+        "aws.greengrass.Nucleus": {
+            "componentVersion": "2.12.0"
+        },
+        "aws.greengrass.Cli": {
+            "componentVersion": "2.12.0"
+        },
+        "com.example.StreamManagerS3Upload": {
+            "componentVersion": "$COMPONENT_VERSION"
+        },
+        "aws.greengrass.StreamManager": {
+            "componentVersion": "2.1.11"
+        }
+    },
+    "deploymentPolicies": {
+        "failureHandlingPolicy": "ROLLBACK",
+        "componentUpdatePolicy": {
+            "timeoutInSeconds": 60,
+            "action": "NOTIFY_COMPONENTS"
+        },
+        "configurationValidationPolicy": {
+            "timeoutInSeconds": 60
+        }
+    },
+    "iotJobConfiguration": {}
+}
