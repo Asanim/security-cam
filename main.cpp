@@ -12,8 +12,7 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
-#include "yolov8.h"
-#include "inference.h"
+#include "yolov7.h"
 
 class Logger : public nvinfer1::ILogger {
     void log(Severity severity, const char* msg) noexcept override {
@@ -33,7 +32,7 @@ int main(int argc, char** argv) {
     std::string engine_path = argv[1];
     std::string video_path = argv[2];
 
-    Yolov8 yolov8(engine_path);
+    Yolov7 yolov7(engine_path);
 
     cv::VideoCapture capture(video_path);
     if (!capture.isOpened()) {
@@ -52,10 +51,10 @@ int main(int argc, char** argv) {
 
     while (capture.read(frame)) {
         framev.push_back(frame);
-        yolov8.preProcess(framev);
-        yolov8.infer();
-        nmsresults = yolov8.PostProcess();
-        Yolov8::DrawBoxesonGraph(frame, nmsresults[0]);
+        yolov7.preProcess(framev);
+        yolov7.infer();
+        nmsresults = yolov7.PostProcess();
+        Yolov7::DrawBoxesonGraph(frame, nmsresults[0]);
         writer.write(frame);
         framev.clear();
         i++;
