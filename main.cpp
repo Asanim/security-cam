@@ -1,18 +1,8 @@
 #include <iostream>
 #include <string>
-#include <memory>
-#include <cuda_runtime.h>
-#include "NvInfer.h"
 #include <vector>
-#include <NvInferPlugin.h>
-#include <fstream>
-#include <algorithm>
-#include <numeric>
 #include <opencv2/opencv.hpp>
-#include <opencv2/core/core.hpp>
-#include <opencv2/highgui/highgui.hpp>
-#include <opencv2/imgproc/imgproc.hpp>
-#include "yolov7.h"
+#include "detection_pipeline.h"
 #include "rest_api_server.h"
 
 class Logger : public nvinfer1::ILogger {
@@ -24,53 +14,53 @@ class Logger : public nvinfer1::ILogger {
     }
 } gLogger;
 
+std::vector<std::string> enumerateCameras() {
+    std::vector<std::string> cameras;
+    for (int i = 0; i < 10; ++i) {
+        cv::VideoCapture cap(i);
+        if (cap.isOpened()) {
+            cameras.push_back(std::to_string(i));
+            cap.release();
+        }
+    }
+    return cameras;
+}
+
 int main(int argc, char** argv) {
-    if (argc != 3) {
-        std::cerr << "Usage: " << argv[0] << " <engine_path> <video_path>" << std::endl;
+    if (argc < 2) {
+        std::cerr << "Usage: " << argv[0] << " <engine_path> [<video_path1> <video_path2> ...]" << std::endl;
         return -1;
     }
 
     std::string engine_path = argv[1];
-    std::string video_path = argv[2];
+    std::vector<std::string> video_paths;
 
-    Yolov7 yolov7(engine_path);
-
-    cv::VideoCapture capture(video_path);
-    if (!capture.isOpened()) {
-        std::cerr << "Error: Could not open video." << std::endl;
-        return -1;
+    for (int i = 2; i < argc; ++i) {
+        video_paths.push_back(argv[i]);
     }
 
-    cv::Size size = cv::Size(capture.get(cv::CAP_PROP_FRAME_WIDTH), capture.get(cv::CAP_PROP_FRAME_HEIGHT));
-    cv::VideoWriter writer(video_path + ".detect.mp4", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 10, size, true);
-
-    cv::Mat frame;
-    std::vector<cv::Mat> framev;
-    std::vector<std::vector<std::vector<float>>> nmsresults;
-    int total_frame_count = capture.get(cv::CAP_PROP_FRAME_COUNT);
-    int i = 0;
-
-    while (capture.read(frame)) {
-        framev.push_back(frame);
-        yolov7.preProcess(framev);
-        yolov7.infer();
-        nmsresults = yolov7.PostProcess();
-        Yolov7::DrawBoxesonGraph(frame, nmsresults[0]);
-        writer.write(frame);
-        framev.clear();
-        i++;
-        std::cout << "\r" << i << " / " << total_frame_count;
-        std::cout.flush();
+    if (video_paths.empty()) {
+        video_paths = enumerateCameras();
     }
 
-    capture.release();
-    std::cout << "Done..." << std::endl;
+    std::vector<std::unique_ptr<DetectionPipeline>> pipelines;
+    for (const auto& video_path : video_paths) {
+        pipelines.push_back(std::make_unique<DetectionPipeline>(engine_path, video_path));
+    }
+
+    for (auto& pipeline : pipelines) {
+        pipeline->start();
+    }
 
     Pistache::Address addr(Pistache::Ipv4::any(), Pistache::Port(9080));
     RestApiServer apiServer(addr);
 
     apiServer.init();
     apiServer.start();
+
+    for (auto& pipeline : pipelines) {
+        pipeline->stop();
+    }
 
     return 0;
 }
