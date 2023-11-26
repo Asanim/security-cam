@@ -14,8 +14,14 @@ find_package(OpenCV REQUIRED)
 # Find CUDA
 find_package(CUDA REQUIRED)
 
-# Include CUDA directories
-include_directories(${CUDA_INCLUDE_DIRS})
+# Find Poco
+find_package(Poco REQUIRED COMPONENTS Net Util)
+
+# Find Pistache
+find_package(Pistache REQUIRED)
+
+# Include directories
+include_directories(${CUDA_INCLUDE_DIRS} ${OpenCV_INCLUDE_DIRS} ${Poco_INCLUDE_DIRS} ${PISTACHE_INCLUDE_DIRS})
 
 # Add system-specific include directories
 MESSAGE(STATUS "CMAKE_HOST_SYSTEM_PROCESSOR is ${CMAKE_HOST_SYSTEM_PROCESSOR}")
@@ -26,7 +32,7 @@ elseif(${CMAKE_HOST_SYSTEM_PROCESSOR} STREQUAL "x86_64")
 endif()
 
 # Add executable
-add_executable(SecurityCam main.cpp yolov7.cpp)
+add_executable(SecurityCam main.cpp yolov7.cpp yolov8.cpp webstream_server.cpp rest_api_server.cpp)
 
 # Link libraries
 if (${CMAKE_HOST_SYSTEM_PROCESSOR} STREQUAL "aarch64")
@@ -36,4 +42,4 @@ elseif(${CMAKE_HOST_SYSTEM_PROCESSOR} STREQUAL "x86_64")
 endif()
 
 link_directories(/usr/lib/ /usr/local/lib/ /usr/local/cuda/lib64/ /usr/local/cuda/lib/)
-target_link_libraries(SecurityCam ${OpenCV_LIBS} ${CUDA_LIBRARIES} nvinfer nvinfer_plugin nvparsers nvonnxparser)
+target_link_libraries(SecurityCam ${OpenCV_LIBS} ${CUDA_LIBRARIES} nvinfer nvinfer_plugin nvparsers nvonnxparser ${Poco_LIBRARIES} Pistache::Pistache sqlite3)

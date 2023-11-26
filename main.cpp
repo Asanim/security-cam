@@ -13,6 +13,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include "yolov7.h"
+#include "rest_api_server.h"
 
 class Logger : public nvinfer1::ILogger {
     void log(Severity severity, const char* msg) noexcept override {
@@ -64,6 +65,12 @@ int main(int argc, char** argv) {
 
     capture.release();
     std::cout << "Done..." << std::endl;
+
+    Pistache::Address addr(Pistache::Ipv4::any(), Pistache::Port(9080));
+    RestApiServer apiServer(addr);
+
+    apiServer.init();
+    apiServer.start();
 
     return 0;
 }
