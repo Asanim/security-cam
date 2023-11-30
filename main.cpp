@@ -4,6 +4,7 @@
 #include <opencv2/opencv.hpp>
 #include "detection_pipeline.h"
 #include "rest_api_server.h"
+#include "sqlite_database.h"
 
 class Logger : public nvinfer1::ILogger {
     void log(Severity severity, const char* msg) noexcept override {
@@ -52,8 +53,9 @@ int main(int argc, char** argv) {
         pipeline->start();
     }
 
+    SQLiteDatabase db("security_cam.db");
     Pistache::Address addr(Pistache::Ipv4::any(), Pistache::Port(9080));
-    RestApiServer apiServer(addr);
+    RestApiServer apiServer(addr, db);
 
     apiServer.init();
     apiServer.start();

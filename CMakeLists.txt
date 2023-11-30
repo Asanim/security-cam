@@ -32,7 +32,7 @@ elseif(${CMAKE_HOST_SYSTEM_PROCESSOR} STREQUAL "x86_64")
 endif()
 
 # Add executable
-add_executable(SecurityCam main.cpp yolov7.cpp yolov8.cpp webstream_server.cpp rest_api_server.cpp detection_pipeline.cpp)
+add_executable(SecurityCam main.cpp yolov7.cpp yolov8.cpp webstream_server.cpp rest_api_server.cpp detection_pipeline.cpp sqlite_database.cpp)
 
 # Link libraries
 if (${CMAKE_HOST_SYSTEM_PROCESSOR} STREQUAL "aarch64")
