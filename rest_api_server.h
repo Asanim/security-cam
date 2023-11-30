@@ -5,7 +5,7 @@
 #include <pistache/http.h>
 #include <pistache/net.h>
 #include <pistache/serializer/rapidjson.h>
-#include <sqlite3.h>
+#include "sqlite_database.h"
 #include <opencv2/opencv.hpp>
 #include <string>
 #include <vector>
@@ -24,7 +24,7 @@ struct Settings {
 
 class RestApiServer {
 public:
-    RestApiServer(Pistache::Address addr);
+    RestApiServer(Pistache::Address addr, SQLiteDatabase& db);
     void init(size_t threads = 2);
     void start();
     void shutdown();
@@ -36,12 +36,7 @@ private:
     void handleGetSettings(const Pistache::Rest::Request& request, Pistache::Http::ResponseWriter response);
     void handleSetSettings(const Pistache::Rest::Request& request, Pistache::Http::ResponseWriter response);
 
-    void initDatabase();
-    void saveDetectionResult(const DetectionResult& result);
-    void saveSettings(const Settings& settings);
-    Settings loadSettings();
-
     Pistache::Http::Endpoint httpEndpoint;
     Pistache::Rest::Router router;
-    sqlite3* db;
+    SQLiteDatabase& db;
 };
