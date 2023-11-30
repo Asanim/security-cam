@@ -14,6 +14,9 @@ find_package(OpenCV REQUIRED)
 # Find CUDA
 find_package(CUDA REQUIRED)
 
+# Set CMAKE_PREFIX_PATH for Poco and Pistache
+set(CMAKE_PREFIX_PATH "/usr/lib/x86_64-linux-gnu/cmake/Poco;/usr/lib/x86_64-linux-gnu/cmake/Pistache")
+
 # Find Poco
 find_package(Poco REQUIRED COMPONENTS Net Util)
 
