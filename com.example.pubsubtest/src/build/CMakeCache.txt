@@ -258,7 +258,7 @@ aws-checksums_DIR:PATH=/home/sam/sdk-workspace/lib/aws-checksums/cmake
 aws-crt-cpp_DIR:PATH=/home/sam/sdk-workspace/lib/aws-crt-cpp/cmake
 
 //Path to a library.
-crypto_SHARED_LIBRARY:FILEPATH=crypto_SHARED_LIBRARY-NOTFOUND
+crypto_SHARED_LIBRARY:FILEPATH=/usr/lib/x86_64-linux-gnu/libcrypto.so
 
 //Value Computed by CMake
 datalogging_BINARY_DIR:STATIC=/home/sam/greengrass-components/com.example.pubsubtest/src/build

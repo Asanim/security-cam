@@ -139,6 +139,33 @@ class SubscribeUpdatesHandler : public SubscribeToComponentUpdatesStreamHandler 
 };
 
 int main() {
+    // Get the value of the AWS_IOT_THING_NAME environment variable
+  const char* awsIotThingName = std::getenv("AWS_IOT_THING_NAME");
+  const char* gg_version = std::getenv("GGC_VERSION");
+  const char* region = std::getenv("AWS_REGION");
+  const char* ca_path = std::getenv("GG_ROOT_CA_PATH");
+  const char* socket_fp = std::getenv("AWS_GG_NUCLEUS_DOMAIN_SOCKET_FILEPATH_FOR_COMPONENT");
+  const char* svcuid = std::getenv("SVCUID");
+  const char* auth_token = std::getenv("AWS_CONTAINER_AUTHORIZATION_TOKEN");
+  const char* cred_uri = std::getenv("AWS_CONTAINER_CREDENTIALS_FULL_URI");
+
+  // Check if the environment variable exists
+  if (awsIotThingName) {
+      std::cout << "AWS IoT Thing Name: " << awsIotThingName << std::endl;
+      std::cout << "ggc version: " << gg_version << std::endl;
+      if (region)
+      std::cout << "region : " << region << std::endl;
+      if (ca_path)
+      std::cout << "ca_path : " << ca_path << std ::endl;
+      if (socket_fp)
+      std::cout << "socket_fp : " << socket_fp << std::endl;
+      if (svcuid)
+      std::cout << "svcuid : " << svcuid << std::endl;
+      if (auth_token)
+      std::cout << "auth_token : " << auth_token << std::endl;
+      if (cred_uri)
+      std::cout << "cred_uri : " << cred_uri << std::endl;
+
   ApiHandle apiHandle(g_allocator);
   Io::EventLoopGroup eventLoopGroup(1);
   Io::DefaultHostResolver socketResolver(eventLoopGroup, 64, 30);
@@ -153,12 +180,11 @@ int main() {
   int i = 0;
 
   String publishTopic("test/publish");
-  int timeout = 10;
-
 
   // Keep the main thread alive, or the process will exit.
   while (true) {
-    std::string publishTopicPayload = R"({"message": "Test message payload )" + std::to_string(i) + R"("})";
+    std::string publishTopicPayload = R"({"message": "Test message payload )" + std::to_string(i) + awsIotThingName + R"("})";
+    i++;
     // Publish to topic 
     auto publishOperation = ipcClient.NewPublishToIoTCore();
     PublishToIoTCoreRequest publishRequest;
@@ -196,5 +222,10 @@ int main() {
 
     std::this_thread::sleep_for(std::chrono::seconds(60));
   }
+
+  } else {
+      std::cerr << "AWS_IOT_THING_NAME environment variable not set." << std::endl;
+  }
+
   return 0;
 }
