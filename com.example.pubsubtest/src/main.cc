@@ -1,8 +1,9 @@
 #include <aws/crt/Api.h>
 #include <aws/greengrass/GreengrassCoreIpcClient.h>
+
+#include <chrono>
 #include <iostream>
 #include <thread>
-#include <chrono>
 
 using namespace Aws::Crt;
 using namespace Aws::Greengrass;
@@ -48,17 +49,16 @@ class IpcClientLifecycleHandler : public ConnectionLifecycleHandler {
   }
 
   void OnDisconnectCallback(RpcError error) override {
-    std::cout << "Disconnected from IPC service. Error: "  << std::endl;
+    std::cout << "Disconnected from IPC service. Error: " << std::endl;
     // Handle disconnection from IPC service.
   }
 
   bool OnErrorCallback(RpcError error) override {
-    std::cout << "IPC service connection error: "  << std::endl;
+    std::cout << "IPC service connection error: " << std::endl;
     // Handle IPC service connection error.
     return true;
   }
 };
-
 
 ///
 /// \brief
@@ -139,92 +139,101 @@ class SubscribeUpdatesHandler : public SubscribeToComponentUpdatesStreamHandler 
 };
 
 int main() {
-    // Get the value of the AWS_IOT_THING_NAME environment variable
-  const char* awsIotThingName = std::getenv("AWS_IOT_THING_NAME");
-  const char* gg_version = std::getenv("GGC_VERSION");
-  const char* region = std::getenv("AWS_REGION");
-  const char* ca_path = std::getenv("GG_ROOT_CA_PATH");
-  const char* socket_fp = std::getenv("AWS_GG_NUCLEUS_DOMAIN_SOCKET_FILEPATH_FOR_COMPONENT");
-  const char* svcuid = std::getenv("SVCUID");
-  const char* auth_token = std::getenv("AWS_CONTAINER_AUTHORIZATION_TOKEN");
-  const char* cred_uri = std::getenv("AWS_CONTAINER_CREDENTIALS_FULL_URI");
+  // Get the value of the AWS_IOT_THING_NAME environment variable
+  const char *awsIotThingName = std::getenv("AWS_IOT_THING_NAME");
+  const char *gg_version = std::getenv("GGC_VERSION");
+  const char *region = std::getenv("AWS_REGION");
+  const char *ca_path = std::getenv("GG_ROOT_CA_PATH");
+  const char *socket_fp = std::getenv("AWS_GG_NUCLEUS_DOMAIN_SOCKET_FILEPATH_FOR_COMPONENT");
+  const char *svcuid = std::getenv("SVCUID");
+  const char *auth_token = std::getenv("AWS_CONTAINER_AUTHORIZATION_TOKEN");
+  const char *cred_uri = std::getenv("AWS_CONTAINER_CREDENTIALS_FULL_URI");
 
   // Check if the environment variable exists
   if (awsIotThingName) {
-      std::cout << "AWS IoT Thing Name: " << awsIotThingName << std::endl;
-      std::cout << "ggc version: " << gg_version << std::endl;
-      if (region)
-      std::cout << "region : " << region << std::endl;
-      if (ca_path)
-      std::cout << "ca_path : " << ca_path << std ::endl;
-      if (socket_fp)
-      std::cout << "socket_fp : " << socket_fp << std::endl;
-      if (svcuid)
-      std::cout << "svcuid : " << svcuid << std::endl;
-      if (auth_token)
-      std::cout << "auth_token : " << auth_token << std::endl;
-      if (cred_uri)
-      std::cout << "cred_uri : " << cred_uri << std::endl;
+    std::cout << "AWS IoT Thing Name: " << awsIotThingName << std::endl;
+    std::cout << "ggc version: " << gg_version << std::endl;
+    if (region) std::cout << "region : " << region << std::endl;
+    if (ca_path) std::cout << "ca_path : " << ca_path << std ::endl;
+    if (socket_fp) std::cout << "socket_fp : " << socket_fp << std::endl;
+    if (svcuid) std::cout << "svcuid : " << svcuid << std::endl;
+    if (auth_token) std::cout << "auth_token : " << auth_token << std::endl;
+    if (cred_uri) std::cout << "cred_uri : " << cred_uri << std::endl;
 
-  ApiHandle apiHandle(g_allocator);
-  Io::EventLoopGroup eventLoopGroup(1);
-  Io::DefaultHostResolver socketResolver(eventLoopGroup, 64, 30);
-  Io::ClientBootstrap bootstrap(eventLoopGroup, socketResolver);
-  IpcClientLifecycleHandler ipcLifecycleHandler;
-  GreengrassCoreIpcClient ipcClient(bootstrap);
-  auto connectionStatus = ipcClient.Connect(ipcLifecycleHandler).get();
-  if (!connectionStatus) {
-    std::cerr << "Failed to establish IPC connection: " << connectionStatus.StatusToString() << std::endl;
-    exit(-1);
-  }
-  int i = 0;
+    ApiHandle apiHandle(g_allocator);
+    std::cout << "ApiHandle created\n";
 
-  String publishTopic("test/publish");
+    Io::EventLoopGroup eventLoopGroup(1);
+    std::cout << "EventLoopGroup created\n";
 
-  // Keep the main thread alive, or the process will exit.
-  while (true) {
-    std::string publishTopicPayload = R"({"message": "Test message payload )" + std::to_string(i) + awsIotThingName + R"("})";
-    i++;
-    // Publish to topic 
-    auto publishOperation = ipcClient.NewPublishToIoTCore();
-    PublishToIoTCoreRequest publishRequest;
-    publishRequest.SetTopicName(publishTopic);
-    Vector<uint8_t> payload(publishTopicPayload.begin(), publishTopicPayload.end());
-    publishRequest.SetPayload(payload);
-    publishRequest.SetQos(QOS_AT_LEAST_ONCE);
-    
-    // Publish
-    std::cout << "Attempting to publish to" << publishTopic.c_str() << "topic\n";
-    auto requestStatus = publishOperation->Activate(publishRequest).get();
-    if (!requestStatus)
-      std::cerr << "Failed to publish to " << publishTopic.c_str() << " topic with error "<< requestStatus.StatusToString().c_str();
+    Io::DefaultHostResolver socketResolver(eventLoopGroup, 64, 30);
+    std::cout << "DefaultHostResolver created\n";
 
-    auto publishResultFuture = publishOperation->GetResult();
-    auto publishResult = publishResultFuture.get();
-    if (publishResult)
-    {
-        std::cout << "Successfully published to "<< publishTopic.c_str() <<" topic\n";
+    Io::ClientBootstrap bootstrap(eventLoopGroup, socketResolver);
+    std::cout << "ClientBootstrap created\n";
+
+    IpcClientLifecycleHandler ipcLifecycleHandler;
+    std::cout << "IpcClientLifecycleHandler created\n";
+
+    GreengrassCoreIpcClient ipcClient(bootstrap);
+    std::cout << "GreengrassCoreIpcClient created\n";
+
+    auto connectionStatus = ipcClient.Connect(ipcLifecycleHandler).get();
+    std::cout << "Connect complete\n";
+
+    if (!connectionStatus) {
+      std::cout << "Failed to establish IPC connection\n";
+      std::cerr << "Failed to establish IPC connection: " << connectionStatus.StatusToString() << std::endl;
+      exit(-1);
+    }
+    std::cout << "IPC connection established\n";
+    int i = 0;
+
+    String publishTopic("test/publish");
+
+    // Keep the main thread alive, or the process will exit.
+    while (true) {
+      std::string publishTopicPayload =
+          R"({"message": "Test message payload )" + std::to_string(i) + awsIotThingName + R"("})";
+      i++;
+      // Publish to topic
+      auto publishOperation = ipcClient.NewPublishToIoTCore();
+      PublishToIoTCoreRequest publishRequest;
+      publishRequest.SetTopicName(publishTopic);
+      Vector<uint8_t> payload(publishTopicPayload.begin(), publishTopicPayload.end());
+      publishRequest.SetPayload(payload);
+      publishRequest.SetQos(QOS_AT_LEAST_ONCE);
+
+      // Publish
+      std::cout << "Attempting to publish to" << publishTopic.c_str() << "topic\n";
+      auto requestStatus = publishOperation->Activate(publishRequest).get();
+      if (!requestStatus)
+        std::cerr << "Failed to publish to " << publishTopic.c_str() << " topic with error "
+                  << requestStatus.StatusToString().c_str();
+
+      auto publishResultFuture = publishOperation->GetResult();
+      auto publishResult = publishResultFuture.get();
+      if (publishResult) {
+        std::cout << "Successfully published to " << publishTopic.c_str() << " topic\n";
         auto *response = publishResult.GetOperationResponse();
         (void)response;
-    } else {
+      } else {
         auto errorType = publishResult.GetResultType();
-        if (errorType == OPERATION_ERROR)
-        {
-            OperationError *error = publishResult.GetOperationError();
-            if (error->GetMessage().has_value())
-                std::cout << "Greengrass Core responded with an error: " << error->GetMessage().value().c_str();
+        if (errorType == OPERATION_ERROR) {
+          OperationError *error = publishResult.GetOperationError();
+          if (error->GetMessage().has_value())
+            std::cout << "Greengrass Core responded with an error: " << error->GetMessage().value().c_str();
+        } else {
+          std::cout << "Attempting to receive the response from the server failed with error code %s\n"
+                    << publishResult.GetRpcError().StatusToString().c_str();
         }
-        else
-        {
-          std::cout << "Attempting to receive the response from the server failed with error code %s\n" << publishResult.GetRpcError().StatusToString().c_str();
-        }
+      }
+
+      std::this_thread::sleep_for(std::chrono::seconds(60));
     }
 
-    std::this_thread::sleep_for(std::chrono::seconds(60));
-  }
-
   } else {
-      std::cerr << "AWS_IOT_THING_NAME environment variable not set." << std::endl;
+    std::cerr << "AWS_IOT_THING_NAME environment variable not set." << std::endl;
   }
 
   return 0;
