@@ -197,10 +197,15 @@ int main() {
           R"({"message": "Test message payload )" + std::to_string(i) + awsIotThingName + R"("})";
       i++;
       // Publish to topic
+      std::cout << "new publish op" << std::endl;
       auto publishOperation = ipcClient.NewPublishToIoTCore();
+      std::cout << "new publish req" << std::endl;
       PublishToIoTCoreRequest publishRequest;
+      std::cout << "set topic name" << std::endl;
       publishRequest.SetTopicName(publishTopic);
+      std::cout << "create payload" << std::endl;
       Vector<uint8_t> payload(publishTopicPayload.begin(), publishTopicPayload.end());
+      std::cout << "ste playload and qos" << std::endl;
       publishRequest.SetPayload(payload);
       publishRequest.SetQos(QOS_AT_LEAST_ONCE);
 
@@ -228,6 +233,7 @@ int main() {
                     << publishResult.GetRpcError().StatusToString().c_str();
         }
       }
+      std::cout << "sleep" << std::endl;
 
       std::this_thread::sleep_for(std::chrono::seconds(60));
     }
