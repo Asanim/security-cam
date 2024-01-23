@@ -17,120 +17,118 @@
  */
 
 
-#include <aws/crt/Api.h>
-#include <aws/greengrass/GreengrassCoreIpcClient.h>
-
-#include <chrono>
 #include <iostream>
-#include <thread>
-
-using namespace Aws::Crt;
-using namespace Aws::Greengrass;
-
 
 int main() {
-  // Get the value of the AWS_IOT_THING_NAME environment variable
-  const char *awsIotThingName = std::getenv("AWS_IOT_THING_NAME");
-  const char *gg_version = std::getenv("GGC_VERSION");
-  const char *region = std::getenv("AWS_REGION");
-  const char *ca_path = std::getenv("GG_ROOT_CA_PATH");
-  const char *socket_fp = std::getenv("AWS_GG_NUCLEUS_DOMAIN_SOCKET_FILEPATH_FOR_COMPONENT");
-  const char *svcuid = std::getenv("SVCUID");
-  const char *auth_token = std::getenv("AWS_CONTAINER_AUTHORIZATION_TOKEN");
-  const char *cred_uri = std::getenv("AWS_CONTAINER_CREDENTIALS_FULL_URI");
+  std::cout << "main.cc" << std::endl;
+  return 0;
+}
 
-  // Check if the environment variable exists
-  if (awsIotThingName) {
-    std::cout << "AWS IoT Thing Name: " << awsIotThingName << std::endl;
-    std::cout << "ggc version: " << gg_version << std::endl;
-    if (region) std::cout << "region : " << region << std::endl;
-    if (ca_path) std::cout << "ca_path : " << ca_path << std ::endl;
-    if (socket_fp) std::cout << "socket_fp : " << socket_fp << std::endl;
-    if (svcuid) std::cout << "svcuid : " << svcuid << std::endl;
-    if (auth_token) std::cout << "auth_token : " << auth_token << std::endl;
-    if (cred_uri) std::cout << "cred_uri : " << cred_uri << std::endl;
 
-    ApiHandle apiHandle(g_allocator);
-    std::cout << "ApiHandle created\n";
+// int detection_stage()
+int main(int argc, char **argv) {
+  uint32_t model_input_size;
+  std::string camera_ports[4] = {"/dev/video0", "/dev/video4", "/dev/video10",
+                                 "/dev/video14"};
+  unsigned char *RKNN_model;
 
-    Io::EventLoopGroup eventLoopGroup(1);
-    std::cout << "EventLoopGroup created\n";
+  InferenceRKNN inference;
 
-    Io::DefaultHostResolver socketResolver(eventLoopGroup, 64, 30);
-    std::cout << "DefaultHostResolver created\n";
+  std::string video_output = "/dev/video";
 
-    Io::ClientBootstrap bootstrap(eventLoopGroup, socketResolver);
-    std::cout << "ClientBootstrap created\n";
+  cv::VideoCapture cap[4];  // Declaring an object to capture stream of frames
+  // from default camera//
 
-    IpcClientLifecycleHandler ipcLifecycleHandler;
-    std::cout << "IpcClientLifecycleHandler created\n";
+  std::to_string video_name = video_output + std::to_string(video_index);
+  cap[i].open(video_name);
 
-    GreengrassCoreIpcClient ipcClient(bootstrap);
-    std::cout << "GreengrassCoreIpcClient created\n";
-
-    auto connectionStatus = ipcClient.Connect(ipcLifecycleHandler).get();
-    std::cout << "Connect complete\n";
-
-    if (!connectionStatus) {
-      std::cout << "Failed to establish IPC connection\n";
-      std::cerr << "Failed to establish IPC connection: " << connectionStatus.StatusToString() << std::endl;
-      exit(-1);
-    }
-    std::cout << "IPC connection established\n";
-    int i = 0;
-
-    String publishTopic("test/publish");
-
-    // Keep the main thread alive, or the process will exit.
-    while (true) {
-      std::string publishTopicPayload =
-          R"({"message": "Test message payload )" + std::to_string(i) + awsIotThingName + R"("})";
-      i++;
-      // Publish to topic
-      std::cout << "new publish op" << std::endl;
-      auto publishOperation = ipcClient.NewPublishToIoTCore();
-      std::cout << "new publish req" << std::endl;
-      PublishToIoTCoreRequest publishRequest;
-      std::cout << "set topic name" << std::endl;
-      publishRequest.SetTopicName(publishTopic);
-      std::cout << "create payload" << std::endl;
-      Vector<uint8_t> payload(publishTopicPayload.begin(), publishTopicPayload.end());
-      std::cout << "ste playload and qos" << std::endl;
-      publishRequest.SetPayload(payload);
-      publishRequest.SetQos(QOS_AT_LEAST_ONCE);
-
-      // Publish
-      std::cout << "Attempting to publish to" << publishTopic.c_str() << "topic\n";
-      auto requestStatus = publishOperation->Activate(publishRequest).get();
-      if (!requestStatus)
-        std::cerr << "Failed to publish to " << publishTopic.c_str() << " topic with error "
-                  << requestStatus.StatusToString().c_str();
-
-      auto publishResultFuture = publishOperation->GetResult();
-      auto publishResult = publishResultFuture.get();
-      if (publishResult) {
-        std::cout << "Successfully published to " << publishTopic.c_str() << " topic\n";
-        auto *response = publishResult.GetOperationResponse();
-        (void)response;
-      } else {
-        auto errorType = publishResult.GetResultType();
-        if (errorType == OPERATION_ERROR) {
-          OperationError *error = publishResult.GetOperationError();
-          if (error->GetMessage().has_value())
-            std::cout << "Greengrass Core responded with an error: " << error->GetMessage().value().c_str();
-        } else {
-          std::cout << "Attempting to receive the response from the server failed with error code %s\n"
-                    << publishResult.GetRpcError().StatusToString().c_str();
-        }
-      }
-      std::cout << "sleep" << std::endl;
-
-      std::this_thread::sleep_for(std::chrono::seconds(60));
-    }
-
+  if (!cap[i].isOpened()) {
+    cout << "No video stream detected" << video_name << endl;
   } else {
-    std::cerr << "AWS_IOT_THING_NAME environment variable not set." << std::endl;
+    cout << endl;
+    cout << "============================================ " << endl;
+    cout << "Found Camera: " << video_name << endl;
+    cout << "============================================ " << endl;
+    cout << endl;
   }
 
-  return 0;
+  inference.init();
+
+  while (1) {
+    auto start_milli = std::chrono::duration_cast<std::chrono::milliseconds>(
+                           std::chrono::system_clock::now().time_since_epoch())
+                           .count();
+
+    // check if we succeeded
+    if (orig_img.empty()) {
+      cerr << "ERROR! blank frame grabbed\n";
+      break;
+    }
+    auto image_read_milli =
+        std::chrono::duration_cast<std::chrono::milliseconds>(
+            std::chrono::system_clock::now().time_since_epoch())
+            .count();
+
+    cv::resize(orig_img, img, cv::Size(ALG_IMAGE_WIDTH, ALG_IMAGE_HEIGHT),
+               (0, 0), (0, 0), cv::INTER_LINEAR);
+    auto image_resize_milli =
+        std::chrono::duration_cast<std::chrono::milliseconds>(
+            std::chrono::system_clock::now().time_since_epoch())
+            .count();
+
+    inference.run(img);
+
+    auto alg_main_milli =
+        std::chrono::duration_cast<std::chrono::milliseconds>(
+            std::chrono::system_clock::now().time_since_epoch())
+            .count();
+
+    inference.post_process();
+
+    auto end_milli = std::chrono::duration_cast<std::chrono::milliseconds>(
+                         std::chrono::system_clock::now().time_since_epoch())
+                         .count();
+
+    // calculation just after!
+    printf("image_read_milli: %ld", (image_read_milli - start_milli));
+    printf("image_resize_milli: %ld", (image_resize_milli - image_read_milli));
+    printf("alg_main_milli: %ld", (alg_main_milli - image_resize_milli));
+    printf("alg_post_milli: %ld", (end_milli - alg_main_milli));
+    printf("total : %ld", (end_milli - start_milli));
+
+    auto real_end_milli =
+        std::chrono::duration_cast<std::chrono::milliseconds>(
+            std::chrono::system_clock::now().time_since_epoch())
+            .count();
+    float fps = 0.0;
+    if ((real_end_milli - start_milli) > 0) {
+      fps = 1000 / ((float)(real_end_milli - start_milli));
+      std::cout << "fps" << fps << "\n\n";
+    }
+
+    orig_img.release();
+    img.release();
+  }
+
+  inference.free_rknn();
+
+  printf("release camera buffer\n");
+  // release
+  /*
+  for (i = 0; i < s32ChnNum; i++)
+  {
+      //check if we have a camera first otherwise segmentation fault
+      if (MAP_FAILED != apvBuf[i])
+      {
+          munmap(apvBuf[i], u32BufLen);
+      }
+  }
+  */
+  printf("release log buffer\n");
+  log_file.close();
+
+  /*
+   *   TODO: write to analog display out
+   */
+  return -1;
 }

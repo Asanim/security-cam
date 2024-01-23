@@ -38,8 +38,17 @@ public:
 
 private:
     std::ofstream logFile;
-
     std::string getTimestamp();
+
+    // system parameter file paths to be logged
+    const char *filepaths[7] = {
+        "/sys/devices/virtual/thermal/thermal_zone1/temp",
+        "/sys/devices/virtual/thermal/thermal_zone0/temp",
+        "/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq",
+        "/sys/devices/system/cpu/cpu1/cpufreq/cpuinfo_cur_freq",
+        "/sys/devices/system/cpu/cpu2/cpufreq/cpuinfo_cur_freq",
+        "/sys/devices/system/cpu/cpu3/cpufreq/cpuinfo_cur_freq",
+        "/sys/devices/platform/ffbc0000.npu/devfreq/ffbc0000.npu/cur_freq"};
 };
 
 #endif // LOGGER_H

@@ -6,6 +6,11 @@
 #include <thread>
 #include <chrono>
 
+struct IotMessage {
+    std::string &publishTopic;
+    std::string &payload;
+}
+
 class IpcClientPublisher {
 public:
     IpcClientPublisher();

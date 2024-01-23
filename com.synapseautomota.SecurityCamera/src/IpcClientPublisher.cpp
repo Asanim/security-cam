@@ -60,7 +60,7 @@ void IpcClientPublisher::SetEnvVariables() {
 }
 
 
-void IpcClientPublisher::PublishMessage(const std::string &payload) {
+void IpcClientPublisher::PublishMessage(const std::string &publishTopic, const std::string &payload) {
     auto publishOperation = ipcClient_.NewPublishToIoTCore();
     PublishToIoTCoreRequest publishRequest;
     publishRequest.SetTopicName(publishTopic);
@@ -83,12 +83,33 @@ void IpcClientPublisher::PublishMessage(const std::string &payload) {
     }
 }
 
-void IpcClientPublisher::PublishThreadFunction(IpcClientPublisher *publisher) {
-    while (!publisher->stopPublishing) {
-        std::string messagePayload =
-            R"({"message": "Test message payload " + std::to_string(publisher->sequenceNumber++) + "})";
-        publisher->PublishMessage(messagePayload);
-
-        std::this_thread::sleep_for(std::chrono::seconds(60));
+void PublishThreadFunction() {
+    while (!stopPublishing) {
+        // Delay for 100ms if the queue is empty
+        if (messageQueue.isEmpty()) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        } else {
+            // Process the queue if it's not empty
+            ProcessQueue();
+        }
     }
+}
+
+void ProcessQueue() {
+    // Dequeue and publish messages as needed
+    IotMessage message = messageQueue.peek();
+    PublishMessage(message.payload);
+    messageQueue.dequeue();
+}
+
+void PublishMessage(const std::string& messageTopic, const std::string& messagePayload) {
+    // Your logic for publishing the message
+    std::cout << "Publishing message: " << messagePayload << std::endl;
+
+    message.publishTopic = "data/" + awsIotThingName_ + messageTopic;
+    message.payload = messagePayload;
+    
+
+    // Enqueue the message to the FIFO queue
+    messageQueue.enqueue(message);
 }
