@@ -1,3 +1,22 @@
+/* 
+ *  
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program. If not, see <https://www.gnu.org/licenses/>.
+ *  
+ *  \file main.cc
+ */
+
+
 #include <aws/crt/Api.h>
 #include <aws/greengrass/GreengrassCoreIpcClient.h>
 
@@ -8,135 +27,6 @@
 using namespace Aws::Crt;
 using namespace Aws::Greengrass;
 
-class SubscribeResponseHandler : public SubscribeToTopicStreamHandler {
- public:
-  virtual ~SubscribeResponseHandler() {}
-
- private:
-  void OnStreamEvent(SubscriptionResponseMessage *response) override {
-    auto jsonMessage = response->GetJsonMessage();
-    if (jsonMessage.has_value() && jsonMessage.value().GetMessage().has_value()) {
-      auto messageString = jsonMessage.value().GetMessage().value().View().WriteReadable();
-      std::cout << "Received JSON message: " << messageString << std::endl;
-      // Handle JSON message.
-    } else {
-      auto binaryMessage = response->GetBinaryMessage();
-      if (binaryMessage.has_value() && binaryMessage.value().GetMessage().has_value()) {
-        auto messageBytes = binaryMessage.value().GetMessage().value();
-        std::string messageString(messageBytes.begin(), messageBytes.end());
-        std::cout << "Received binary message: " << messageString << std::endl;
-        // Handle binary message.
-      }
-    }
-  }
-
-  bool OnStreamError(OperationError *error) override {
-    std::cout << "Stream error: " << std::endl;
-    // Handle error.
-    return false;  // Return true to close the stream, false to keep the stream open.
-  }
-
-  void OnStreamClosed() override {
-    std::cout << "Stream closed." << std::endl;
-    // Handle close.
-  }
-};
-
-class IpcClientLifecycleHandler : public ConnectionLifecycleHandler {
-  void OnConnectCallback() override {
-    std::cout << "Connected to IPC service." << std::endl;
-    // Handle connection to IPC service.
-  }
-
-  void OnDisconnectCallback(RpcError error) override {
-    std::cout << "Disconnected from IPC service. Error: " << std::endl;
-    // Handle disconnection from IPC service.
-  }
-
-  bool OnErrorCallback(RpcError error) override {
-    std::cout << "IPC service connection error: " << std::endl;
-    // Handle IPC service connection error.
-    return true;
-  }
-};
-
-///
-/// \brief
-///
-///
-class SubscribeUpdatesHandler : public SubscribeToComponentUpdatesStreamHandler {
- public:
-  virtual ~SubscribeUpdatesHandler() {}
-
-  // TODO also subscribe to the board io monitor
-  bool IsUpdateReady() {
-    std::cout << "System Update Ready?" << std::endl;
-
-    return true;
-  }
-
- private:
-  GreengrassCoreIpcClient *ipcClient;
-
-  void OnStreamEvent(ComponentUpdatePolicyEvents *response) override {
-    try {
-      // pre update event
-      if (response->GetPreUpdateEvent().has_value()) {
-        if (IsUpdateReady()) {
-          deferUpdate(response->GetPreUpdateEvent().value().GetDeploymentId().value());
-        } else {
-          acknowledgeUpdate(response->GetPreUpdateEvent().value().GetDeploymentId().value());
-        }
-      } else if (response->GetPostUpdateEvent().has_value()) {
-        // THIS is an AWS defined function... meaning that the update will be considered applied once the install script
-        // runs to completion...
-
-        std::cout << "Applied update for deployment" << std::endl;
-
-        // TODO: set the database to update complete?
-        // TODO: Run our self checks here!
-      }
-    } catch (const std::exception &e) {
-      std::cerr << "Exception caught: " << e.what() << std::endl;
-    }
-  }
-
-  void deferUpdate(Aws::Crt::String deploymentId) {
-    std::cout << "Deferring deployment: " << deploymentId << std::endl;
-
-    ipcClient->NewDeferComponentUpdate();
-  }
-
-  void acknowledgeUpdate(Aws::Crt::String deploymentId) {
-    std::cout << "Acknowledging deployment: " << deploymentId << std::endl;
-  }
-
-  bool OnStreamError(OperationError *error) override {
-    std::cerr << "Operation error" << error->GetMessage().value() << std::endl;
-    // Handle error.
-    return false;  // Return true to close stream, false to keep stream open.
-  }
-
-  bool OnStreamError(ServiceError *error) override {
-    std::cerr << "Operation error" << error->GetMessage().value() << std::endl;
-
-    // Handle error.
-    return false;  // Return true to close stream, false to keep stream open.
-  }
-
-  bool OnStreamError(ResourceNotFoundError *error) override {
-    std::cerr << "Operation error" << error->GetMessage().value() << std::endl;
-
-    // Handle error.
-    return false;  // Return true to close stream, false to keep stream open.
-  }
-
-  void OnStreamClosed() override {
-    std::cerr << "Operation error" << std::endl;
-
-    // Handle close.
-  }
-};
 
 int main() {
   // Get the value of the AWS_IOT_THING_NAME environment variable

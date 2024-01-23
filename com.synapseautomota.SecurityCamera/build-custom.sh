@@ -1,10 +1,16 @@
 #!/usr/bin/bash
+
+# Cleanup: Remove existing build directory
 rm -rf src/build
+
+# Create a new build directory
 mkdir src/build
+
+# Navigate to the build directory
 cd src/build
 
-cmake .. 
-make 
+# Configure the project using CMake
+cmake ..
 
-# tar -czf source.tar.gz datalogging
-# cp source.tar.gz ../../greengrass-build/artifacts/$COMPONENT_NAME/$COMPONENT_VERSION
+# Build the project using Make
+make
