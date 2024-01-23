@@ -1,14 +1,14 @@
 {
 	"RecipeFormatVersion": "2020-01-25",
-	"ComponentName": "com.example.pubsubtest",
-	"ComponentVersion": "0.0.1",
+	"ComponentName": "$COMPONENT_NAME",
+	"ComponentVersion": "$COMPONENT_VERSION",
 	"ComponentDescription": "Sentinel Vision - Personnel proximity detection system for mobile machinery",
-	"ComponentPublisher": "Sam Taylor",
+	"ComponentPublisher": "$COMPONENT_AUTHOR",
     "ComponentConfiguration": {
       "DefaultConfiguration": {
 		"accessControl": {
 			"aws.greengrass.ipc.mqttproxy": {
-				"com.example.pubsubtest:mqttproxy:1": {
+				"$COMPONENT_NAME:mqttproxy:1": {
 					"policyDescription": "Allows access to publish to all AWS IoT Core topics.",
 					"operations": [
 						"aws.greengrass#PublishToIoTCore",
@@ -27,12 +27,6 @@
 			"Platform": {
 				"os": "all"
 			},
-			"Artifacts": [
-				{
-					"URI": "s3://greengrass-component-artifacts/com.example.pubsubtest/0.0.1/datalogging",
-					"Unarchive": "NONE"
-				}
-			],
 			"Lifecycle": {
 				"Run": "{artifacts:path}/datalogging"
 			}

@@ -1,5 +1,5 @@
 {
-    "targetArn": "arn:aws:iot:ap-southeast-2:695628496346:thinggroup/Development",
+    "targetArn": "arn:aws:iot:$AWS_REGION:$AWS_ACCOUNT_ID:thinggroup/$THING_GROUP",
     "deploymentName": "Automated deployment",
     "components": {
         "aws.greengrass.Nucleus": {

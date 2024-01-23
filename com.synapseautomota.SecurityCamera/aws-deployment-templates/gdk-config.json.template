@@ -1,20 +1,20 @@
 {
   "component": {
-    "com.example.pubsubtest": {
-      "author": "Sam Taylor",
-      "version": "0.0.1",
+    "$COMPONENT_NAME": {
+      "author": "$COMPONENT_AUTHOR",
+      "version": "$COMPONENT_VERSION",
       "build": {
         "build_system": "custom",
         "custom_build_command": [
           "bash",
           "build-custom.sh",
-          "com.example.pubsubtest",
-          "0.0.1"
+          "$COMPONENT_NAME",
+          "$COMPONENT_VERSION"
         ]
       },
       "publish": {
-        "bucket": "greengrass-component-artifacts",
-        "region": "ap-southeast-2"
+        "bucket": "$BUCKET_NAME",
+        "region": "$AWS_REGION"
       }
     }
   },

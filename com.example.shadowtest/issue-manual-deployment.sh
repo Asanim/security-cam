@@ -16,7 +16,7 @@ export AWS_REGION=ap-southeast-2
 export THING_GROUP=Development
 export AWS_ACCOUNT_ID=$(aws sts get-caller-identity | jq -r '.Account')
 export BUCKET_NAME="greengrass-component-artifacts"
-export COMPONENT_NAME="com.example.pubsubtest"
+export COMPONENT_NAME="com.example.shadowtest"
 export COMPONENT_AUTHOR="Sam Taylor"
 
 # Create 'recipe.json' using environment variables
@@ -32,7 +32,6 @@ cat gdk-config.json
 # Build and publish the component
 gdk component build
 envsubst < "./aws-deployment-templates/recipe.json.template" > "./greengrass-build/recipes/recipe.json"
-cp src/build/datalogging greengrass-build/artifacts/$COMPONENT_NAME/$COMPONENT_VERSION/
 gdk component publish
 
 # Create 'deployment.json' using environment variables
