@@ -7,7 +7,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
         LINKER_LANGUAGE CXX
         CXX_STANDARD 11) 
 
-set(AWS_SDK_DIR /home/sam/sdk-workspace)
+set(AWS_SDK_DIR /opt/sdk_workspace)
 
 list(APPEND CMAKE_PREFIX_PATH ${AWS_SDK_DIR}/lib/)
 set(AWS_LIBRARY_DIR ${AWS_SDK_DIR}/lib/)

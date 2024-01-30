@@ -2,7 +2,7 @@
 build
 build_x86
 build_arm
-greengrass-build
+greengrass-build/
 .tmp
 main_coverage.info
 **/*.dump
