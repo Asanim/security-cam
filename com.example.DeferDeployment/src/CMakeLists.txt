@@ -1,11 +1,13 @@
 cmake_minimum_required(VERSION 3.1)
-project (pubsub)
+project (DeferDeployment)
 
-add_executable(${PROJECT_NAME} main.cc)
+set(EXECUTABLE_NAME main)
 
-set_target_properties(${PROJECT_NAME} PROPERTIES
+add_executable(${EXECUTABLE_NAME} main.cc)
+
+set_target_properties(${EXECUTABLE_NAME} PROPERTIES
         LINKER_LANGUAGE CXX
-        CXX_STANDARD 11) 
+        CXX_STANDARD 17) 
 
 ## Set AWS include and library directories
 set(AWS_SDK_DIR /opt/sdk_workspace_64)
@@ -21,4 +23,4 @@ find_package(aws-crt-cpp REQUIRED)
 find_package(EventstreamRpc-cpp REQUIRED)
 find_package(GreengrassIpc-cpp REQUIRED)
 
-target_link_libraries(${PROJECT_NAME} AWS::GreengrassIpc-cpp)
+target_link_libraries(${EXECUTABLE_NAME} AWS::GreengrassIpc-cpp)

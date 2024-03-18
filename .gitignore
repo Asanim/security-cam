@@ -1,8 +1,6 @@
 **/*.code-workspace
-build
-build_x86
-build_arm
-greengrass-build/
+**/build/
+**/greengrass-build/
 .tmp
 main_coverage.info
 **/*.dump
@@ -13,5 +11,5 @@ gdk-config.json
 recipe.json
 deployment.json
 
-artifact/
-build/
+artifact
+build

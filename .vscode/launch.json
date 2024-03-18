@@ -1,0 +1,25 @@
+ {
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Delay Deploy GG Components",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/greengrass/v2/packages/artifacts/com.example.DeferDeployment/0.0.18/main",
+            "miDebuggerServerAddress": "localhost:9091",
+            "args": [],
+            "stopAtEntry": true,
+            "cwd": "/",
+            "environment": [],
+            "externalConsole": false,
+            "serverStarted": "GDB server started on port 9091",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+ }

@@ -4,7 +4,7 @@
 set -e
 
 SCRIPT_PATH="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-INSTALL_DIR="/opt/sdk_workspace/"
+INSTALL_DIR="/opt/sdk_workspace_64/"
 BUILD_PATH=${SCRIPT_PATH}/../build/sdk-workspace
 
 # Set the toolchain PATH
@@ -16,12 +16,12 @@ mkdir -p ${BUILD_PATH}
 cd ${BUILD_PATH}
 
 # Clone and build s2n
-git clone https://github.com/awslabs/s2n.git
-cd s2n
-cmake .
-make
-sudo make install
-cd ..
+# git clone https://github.com/awslabs/s2n.git
+#cd s2n
+#cmake .
+#make
+#sudo make install
+#cd ..
 
 # Clone the AWS IoT Device SDK repository
 git clone --recursive https://github.com/aws/aws-iot-device-sdk-cpp-v2.git
@@ -43,8 +43,8 @@ echo "$PWD"
 cmake ../aws-iot-device-sdk-cpp-v2 \
     -DCMAKE_INSTALL_PREFIX="$INSTALL_DIR" \
     -DCMAKE_BUILD_TYPE=Release \
-    -DBUILD_SHARED_LIBS=ON \
-    -DS2N_LIBRARY_PATH="/usr/local/lib/libs2n.so"  # Adjust the path as needed
+    -DBUILD_SHARED_LIBS=ON
+#    -DS2N_LIBRARY_PATH="/usr/local/lib/libs2n.so"  # Adjust the path as needed
 
 # Build and install the AWS IoT Device SDK
 cmake --build . --target install
