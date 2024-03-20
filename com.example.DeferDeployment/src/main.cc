@@ -18,8 +18,10 @@ public:
 
 private:
   bool is_update_safe_ = false;
-  int32_t component_update_recheck_ms_ = 1000;
+  int32_t component_update_recheck_ms_ = 5000;
   std::string deployment_id_ = "";
+
+  std::unique_ptr<std::thread> update_thread_; ///< Thread for the main MQTT handling logic.
 
   void OnStreamEvent(Aws::Greengrass::ComponentUpdatePolicyEvents *response)
   {
@@ -33,20 +35,25 @@ private:
         std::cout << "Received component update, event ID: " << response->GetPreUpdateEvent()->GetDeploymentId()->c_str()
                   << std::endl;
 
+        int32_t recheck_after_ms = 0;
+
         // defer the update
-        if (is_update_safe_)
-        {
-          // defer the update for 0ms
-          std::cout << "Update is safe, delaying update for 0ms...";
-          if (auto deployment_id = response->GetPreUpdateEvent()->GetDeploymentId(); deployment_id.has_value())
-            DeferSystemComponentUpdate(*deployment_id, 0);
-        }
-        else
+        if (!is_update_safe_)
         {
           std::cout << "Update is not safe, delaying update...";
-          if (auto deployment_id = response->GetPreUpdateEvent()->GetDeploymentId(); deployment_id.has_value())
-            DeferSystemComponentUpdate(*deployment_id, component_update_recheck_ms_);
+          recheck_after_ms = component_update_recheck_ms_;
         }
+
+        // run the update thread...
+        if (update_thread_ && update_thread_->joinable())
+        {
+          // The update thread is currently running
+          std::cout << "The update thread is currently running...";
+          update_thread_->join();
+        }
+        // The update thread is not running
+        std::cout << "The update thread is not running... Creating a new update request thread";
+        update_thread_ = std::make_unique<std::thread>(&ComponentUpdateHandler::DeferSystemComponentUpdate, this, response->GetPreUpdateEvent()->GetDeploymentId().value(), recheck_after_ms);
       }
 
       if (response->GetPostUpdateEvent().has_value())
@@ -93,13 +100,13 @@ private:
     return true;
   }
 
-  void DeferSystemComponentUpdate(Aws::Crt::String &deployment_id,
+  void DeferSystemComponentUpdate(const Aws::Crt::String &deployment_id,
                                   int32_t recheck_after_ms)
   {
-    std::cout << "Building defer deployment request" << std::endl;
+    std::cout << "Building defer deployment request: " << deployment_id << std::endl;
     auto defer_update_request = Aws::Greengrass::DeferComponentUpdateRequest();
     defer_update_request.SetDeploymentId(deployment_id);
-    defer_update_request.SetRecheckAfterMs(1800000);
+    defer_update_request.SetRecheckAfterMs(1000);
     defer_update_request.SetMessage(Aws::Crt::String("Sentinel Vision: Update is not safe, deferring until safe."));
 
     std::cout << "Create defer_update_operation" << std::endl;
@@ -108,21 +115,27 @@ private:
     auto request_status = defer_update_operation->Activate(defer_update_request, nullptr);
     std::cout << "Wait for result" << std::endl;
     request_status.wait();
+    // auto result = request_status.wait_for(std::chrono::seconds(10));
+    // if (result != std::future_status::ready)
+    //   std::cout << "Wait for result timed out" << std::endl;
 
     std::cout << "Get Result" << std::endl;
     auto publish_result_future = defer_update_operation->GetResult();
+    std::cout << "Waiting for Result" << std::endl;
 
-    if (publish_result_future.wait_for(std::chrono::seconds(10)) == std::future_status::timeout) {
-        std::cerr << "Operation timed out while waiting for response from Greengrass Core." << std::endl;
-        exit(-1);
+    if (publish_result_future.wait_for(std::chrono::seconds(10)) == std::future_status::timeout)
+    {
+      std::cerr << "Operation timed out while waiting for response from Greengrass Core." << std::endl;
+      return;
     }
 
     std::cout << "Check Result" << std::endl;
     if (auto publish_result = publish_result_future.get(); publish_result)
     {
       const auto *response = publish_result.GetOperationResponse();
-      (void)response;W
-      std::cout << "Defer Success" << std::endl;
+      (void)response;
+      std::cout
+          << "Defer Success" << std::endl;
     }
     else
     {
@@ -133,17 +146,18 @@ private:
         if (error->GetMessage().has_value())
         {
           std::cerr << "Greengrass Core responded with an error: " << error->GetMessage().value().c_str();
-          exit(-1);
+          return;
         }
       }
       else
       {
         std::cerr << "Attempting to receive the response from the server failed with error code %s\n"
                   << publish_result.GetRpcError().StatusToString().c_str();
-        exit(-1);
+        return;
       }
     }
-      std::cout << "Function Complete" << std::endl;
+    std::cout << "Function Complete" << std::endl;
+    return;
   }
 };
 
