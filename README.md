@@ -1,99 +1,20 @@
-# AWS Greengrass Component Repository
+# Security Camera Reference Application
+Security Camera AI enabled using Amazon Web Services (AWS). This is an example project for demonstrating and exploring AWS IoT functionality
 
-Welcome to the AWS Greengrass Component Repository! This repository houses a collection of Greengrass components and convenience scripts designed to streamline the deployment and management of AWS Greengrass applications. Whether you are exploring AWS IoT capabilities, experimenting with device shadows, testing publish-subscribe functionalities, or implementing a security camera solution, this repository provides a diverse set of components to meet your needs.
+This repos has been cloned from my example repo for AWS. The original repo can be found at the following link:
+https://github.com/Asanim/greengrass-components
 
-## Overview
-
-The repository is organized into several component directories, each serving a specific purpose:
-
-- **com.example.pubsubtest:** Ideal for testing and demonstrating the publish-subscribe capabilities of AWS Greengrass.
-
-- **com.example.StreamManagerS3Upload:** Focuses on uploading data to Amazon S3 using AWS IoT Greengrass Stream Manager, facilitating seamless data transfer and storage in the AWS Cloud.
-
-- **com.example.BatteryAwareHelloWorld:** Demonstrates the creation of a battery-aware Greengrass Lambda function, addressing power-efficient application development.
-
-- **com.example.shadowtest:** Designed for testing and interacting with AWS IoT Thing Shadows, enabling experimentation with device state synchronization and management.
-
-- **com.synapseautomota.SecurityCamera:** Tailored for security camera applications, observing image streams, detecting people, and uploading video recordings and snapshots to the AWS Cloud.
-
-- **scripts:** Houses convenience scripts for managing AWS Greengrass components and AWS profiles, simplifying common deployment and AWS profile management tasks.
-
-# Component Directories Overview
-
-## com.example.pubsubtest
-
-The `com.example.pubsubtest` directory contains a Greengrass component designed for testing and demonstrating the publish-subscribe capabilities of AWS Greengrass. It is particularly useful for experimenting with message passing between devices within a Greengrass group.
-
-### Usage
-
-To deploy this component, navigate to the directory and run the manual deployment script:
-
-```bash
-cd com.example.pubsubtest
-./issue-manual-deployment.sh 0.0.0
-```
-
-Replace `0.0.0` with the desired version number.
-
-## com.example.StreamManagerS3Upload
-
-The `com.example.StreamManagerS3Upload` directory houses a Greengrass component focused on uploading data to Amazon S3 using AWS IoT Greengrass Stream Manager. This component is beneficial for scenarios requiring seamless data transfer and storage in the AWS Cloud.
-
-### Usage
-
-Deploy the component by navigating to its directory and running the manual deployment script:
-
-```bash
-cd com.example.StreamManagerS3Upload
-./issue-manual-deployment.sh 0.0.0
-```
-
-Replace `0.0.0` with the version number you intend to use.
-
-## com.example.BatteryAwareHelloWorld
-
-In the `com.example.BatteryAwareHelloWorld` directory, you'll find a Greengrass component that demonstrates how to create a battery-aware Greengrass Lambda function. This component is helpful for understanding and implementing power-efficient applications that consider the device's battery status.
-
-### Usage
-
-To deploy this battery-aware component, navigate to its directory and run the manual deployment script:
-
-```bash
-cd com.example.BatteryAwareHelloWorld
-./issue-manual-deployment.sh 0.0.0
-```
-
-Replace `0.0.0` with your chosen version number.
-
-## com.example.shadowtest
-
-The `com.example.shadowtest` directory contains a Greengrass component for testing and interacting with AWS IoT Thing Shadows. This component is ideal for experimenting with device state synchronization and management using AWS IoT Thing Shadows.
-
-### Usage
-
-Deploy the `com.example.shadowtest` component by navigating to its directory and executing the manual deployment script:
-
-```bash
-cd com.example.shadowtest
-./issue-manual-deployment.sh 0.0.0
-```
-
-Specify the desired version number instead of `0.0.0`.
-
-## com.synapseautomota.SecurityCamera
-
-The `com.synapseautomota.SecurityCamera` directory houses a Greengrass component designed for security camera applications. This component is configured to observe an incoming image stream, detect people, and upload video recordings and snapshots to the AWS Cloud for further analysis.
+A Greengrass component designed for security camera applications. This component is configured to observe an incoming image stream, detect people, and upload video recordings and snapshots to the AWS Cloud for further analysis.
 
 ### Usage
 
 Deploy the security camera component by navigating to its directory and running the manual deployment script:
 
 ```bash
-cd com.synapseautomota.SecurityCamera
-./issue-manual-deployment.sh 0.0.0
+./scripts/issue-manual-deployment.sh 0.0.0
 ```
 
-Replace `0.0.0` with the version number you wish to use.
+Replace `0.0.0` with the version number you wish to set.
 
 ## scripts
 
@@ -103,32 +24,7 @@ The `scripts` directory contains convenience scripts for managing AWS Greengrass
 
 Explore and utilize the scripts in the `scripts` directory based on your specific Greengrass component deployment and management needs. Refer to the script documentation for detailed instructions.
 
-Feel free to customize and extend these components according to your project requirements.
-
-
-## Usage
-
-### Manual Deployment
-
-To create a new deployment, follow these steps:
-
-1. Navigate to the component's directory.
-
-   ```bash
-   cd your-component-directory
-   ```
-
-2. Run the manual deployment script, specifying the version number.
-
-   ```bash
-   ./issue-manual-deployment.sh 0.0.0
-   ```
-
-   Replace `0.0.0` with the desired version number. Please review the component-specific documentation for any additional deployment instructions.
-
 ## Useful Commands
-
-Here are some useful commands to enhance your Greengrass component management experience:
 
 ### Discover AWS Profile Information
 
@@ -161,12 +57,6 @@ To add a new AWS profile, run the following command:
 ```bash
 aws configure --profile
 ```
-
-This command will prompt you to set up a new AWS profile, allowing you to easily switch between different AWS configurations.
-
-Feel free to explore and customize these commands to suit your specific Greengrass component deployment and management needs.
-
-
 
 # ARM64 and ARM32 Security Camera Application
 
@@ -239,13 +129,3 @@ For ARM32:
 ```
 
 The application will start monitoring the image stream, and detected people will trigger video recording and snapshot capture. The data will be uploaded to the specified AWS Cloud storage.
-
-## License
-
-This security camera application is released under the [MIT License](LICENSE). Feel free to customize and extend it according to your needs.
-
-## Support and Contributions
-
-For questions, issues, or contributions, please create a GitHub issue or reach out to our community at [community.example.com](https://community.example.com).
-
-Happy monitoring! 📷🔒

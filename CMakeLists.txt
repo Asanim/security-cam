@@ -1,18 +1,27 @@
 cmake_minimum_required(VERSION 3.1)
 project (SecurityCamera)
 
+# Print CMake version
+message("CMake version: ${CMAKE_MAJOR_VERSION}.${CMAKE_MINOR_VERSION}.${CMAKE_PATCH_VERSION}")
+message("Full CMake version: ${CMAKE_VERSION}")
+
+option(TRACE OFF)
+set(CMAKE_INSTALL_MESSAGE LAZY)
+set(PROJECT_SOURCE_DIR ${CMAKE_SOURCE_DIR})
+set(INSTALL_DIR ${CMAKE_BINARY_DIR}/external/install)
+
 add_executable(${PROJECT_NAME}
-    main.cc
-    SubscribeUpdatesHandler.cpp
-    IpcClientLifecycleHandler.cpp
-    IpcClientPublisher.cpp
-    Logger.cpp
-    OpenCVUtils.cpp
-    SubscribeResponseHandler.cpp
-    alg_image_detect.cpp
-    alg_standalone.cpp
-    fifo_queue.cpp
-    inference_rknn.cpp
+    src/main.cc
+    # src/SubscribeUpdatesHandler.cpp
+    # src/IpcClientLifecycleHandler.cpp
+    # src/IpcClientPublisher.cpp
+    # src/Logger.cpp
+    # src/OpenCVUtils.cpp
+    # src/SubscribeResponseHandler.cpp
+    # src/alg_image_detect.cpp
+    # src/alg_standalone.cpp
+    # src/fifo_queue.cpp
+    # src/inference_rknn.cpp
 )
 
 set_target_properties(${PROJECT_NAME} PROPERTIES

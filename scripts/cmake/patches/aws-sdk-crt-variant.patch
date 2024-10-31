@@ -1,0 +1,15 @@
+diff --git a/include/aws/crt/Variant.h b/include/aws/crt/Variant.h
+index e4cec4a..72c904e 100644
+--- a/include/aws/crt/Variant.h
++++ b/include/aws/crt/Variant.h
+@@ -392,7 +392,9 @@ namespace Aws
+           private:
+             static constexpr std::size_t STORAGE_SIZE = VariantDetail::ParameterPackSize::GetMaxSizeOf<Ts...>();
+ 
+-            alignas(VariantDetail::ParameterPackSize::AlignAsPack<Ts...>()) char m_storage[STORAGE_SIZE];
++            //alignas(VariantDetail::ParameterPackSize::AlignAsPack<Ts...>()) char m_storage[STORAGE_SIZE];
++            alignas(alignof(max_align_t)) char m_storage[STORAGE_SIZE];
++
+             IndexT m_index = -1;
+ #if defined(AWS_CRT_ENABLE_VARIANT_DEBUG)
+             VariantDetail::VariantDebug::VariantDebugBrowser<Ts...> browser = m_storage;
