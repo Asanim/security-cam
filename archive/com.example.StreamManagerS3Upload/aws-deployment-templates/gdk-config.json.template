@@ -4,13 +4,7 @@
       "author": "$COMPONENT_AUTHOR",
       "version": "$COMPONENT_VERSION",
       "build": {
-        "build_system": "custom",
-        "custom_build_command": [
-          "bash",
-          "scripts/build-custom.sh",
-          "$COMPONENT_NAME",
-          "$COMPONENT_VERSION"
-        ]
+        "build_system": "zip"
       },
       "publish": {
         "bucket": "$BUCKET_NAME",

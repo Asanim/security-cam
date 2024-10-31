@@ -6,7 +6,7 @@ main_coverage.info
 **/*.dump
 **/*.ctu-info
 *.zip
-
+archive*
 gdk-config.json
 recipe.json
 deployment.json

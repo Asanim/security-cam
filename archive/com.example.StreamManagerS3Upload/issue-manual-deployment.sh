@@ -16,23 +16,25 @@ export AWS_REGION=ap-southeast-2
 export THING_GROUP=TestStream
 export AWS_ACCOUNT_ID=$(aws sts get-caller-identity | jq -r '.Account')
 export BUCKET_NAME="greengrass-component-artifacts"
-export COMPONENT_NAME="com.example.StreamManagerS3Upload/"
+export COMPONENT_NAME="com.example.StreamManagerS3Upload"
 export COMPONENT_AUTHOR="Asanim"
 
 # # Create 'recipe.json' using environment variables
-# envsubst < "./scripts/aws-deployment-templates/recipe.json.template" > "recipe.json"
+# envsubst < "./aws-deployment-templates/recipe.json.template" > "recipe.json"
+# # envsubst < "./aws-deployment-templates/recipe.json.template" > "./greengrass-build/recipes/recipe.json"
 # cat recipe.json
 
 # # Create 'gdk-config.json' using environment variables
-# envsubst < "./scripts/aws-deployment-templates/gdk-config.json.template" > "gdk-config.json"
+# envsubst < "./aws-deployment-templates/gdk-config.json.template" > "gdk-config.json"
 # cat gdk-config.json
 
-# Build and publish the component
-gdk component build
-gdk component publish
+# # Build and publish the component
+# gdk component build
+# envsubst < "./aws-deployment-templates/recipe.json.template" > "./greengrass-build/recipes/recipe.json"
+# gdk component publish
 
 # Create 'deployment.json' using environment variables
-# envsubst < "./aws-deployment-templates/deployment.json.template" > "deployment.json"
+envsubst < "./aws-deployment-templates/deployment.json.template" > "deployment.json"
 
-# # Create the deployment in AWS Greengrass
-# aws greengrassv2 create-deployment --cli-input-json file://deployment.json --region ${AWS_REGION}
+# Create the deployment in AWS Greengrass
+aws greengrassv2 create-deployment --cli-input-json file://deployment.json --region ${AWS_REGION}
