@@ -27,5 +27,5 @@ ExternalProject_Add(aws-sdk-cpp
     BUILD_ALWAYS 0
 )
 
-add_dependencies(aws-sdk-cpp zlib libcurl)
+add_dependencies(aws-sdk-cpp zlib curl)
 # -DBUILD_ONLY=s3;sts

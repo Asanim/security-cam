@@ -21,9 +21,8 @@ ExternalProject_Add(
   DOWNLOAD_DIR ${CMAKE_BINARY_DIR}/external/aws-iot-device-sdk-cpp-v2/download
   SOURCE_DIR ${CMAKE_BINARY_DIR}/external/aws-iot-device-sdk-cpp-v2/src
   BINARY_DIR ${CMAKE_BINARY_DIR}/external/aws-iot-device-sdk-cpp-v2/build
+  INSTALL_DIR ${CMAKE_BINARY_DIR}/external/install
   INSTALL_COMMAND make DESTDIR=${INSTALL_DIR} install
   UPDATE_DISCONNECTED 1
   BUILD_ALWAYS 0
 )
-set(AWS_INCLUDE_DIR ${CMAKE_BINARY_DIR}/external/install/opt/sdk_workspace/include/)
-set(AWS_LIBRARY_DIR ${CMAKE_BINARY_DIR}/external/install/opt/sdk_workspace/lib/)
