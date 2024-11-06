@@ -13,7 +13,7 @@
 // limitations under the License.
 
 #include "inference_rknn.h"
-#include "model_loader.h" // Assuming you have a model_loader.h for load_model function
+#include "model_loader.h" 
 
 #define ALG_IMAGE_HEIGHT 480 // Adjust as needed
 #define ALG_IMAGE_WIDTH 640  // Adjust as needed

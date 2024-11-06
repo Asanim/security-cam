@@ -88,6 +88,17 @@
         "__tree": "cpp",
         "stack": "cpp",
         "unordered_set": "cpp",
-        "source_location": "cpp"
+        "source_location": "cpp",
+        "any": "cpp",
+        "strstream": "cpp",
+        "charconv": "cpp",
+        "csignal": "cpp",
+        "forward_list": "cpp",
+        "regex": "cpp",
+        "future": "cpp",
+        "shared_mutex": "cpp",
+        "span": "cpp",
+        "valarray": "cpp",
+        "format": "cpp"
     }
 }
