@@ -6,6 +6,46 @@ https://github.com/Asanim/greengrass-components
 
 A Greengrass component designed for security camera applications. This component is configured to observe an incoming image stream, detect people, and upload video recordings and snapshots to the AWS Cloud for further analysis.
 
+## Requirements 
+
+this project is designed to showcase a basic implementation of a security camera for vehicles. 
+
+shall run off the car's battery whiel it is turned off
+
+https://github.com/rockchip-linux/rknn-toolkit.git
+
+
+AWS
+- Remote update 
+- remote upload of events 
+   - publish MQTT message of raw 
+   - 
+- support rockchip and RK3399pro. Add further support for cam1126su
+- 
+
+
+cloud 
+- monitor runtimes / operational times
+- 
+
+todo
+- create document pdf generator
+- 
+
+
+
+- must integrate with the RK3399 Pro platform
+* monitor the outside of the car 
+* terraform
+
+why 
+
+
+## Useful Links
+https://wiki.t-firefly.com/en/3399pro_npu/npu_rknn_api.html
+https://wiki.t-firefly.com/en/Firefly-RK3399/index.html
+https://github.com/airockchip/RK3399Pro_npu
+
 ### Usage
 
 Deploy the security camera component by navigating to its directory and running the manual deployment script:

@@ -1,7 +1,7 @@
 #ifndef IPC_CLIENT_PUBLISHER_H
 #define IPC_CLIENT_PUBLISHER_H
 
-#include <aws/greengrass/ipc/GreengrassCoreIpcClient.h>
+#include <aws/greengrass/GreengrassCoreIpcClient.h>
 #include <iostream>
 #include <thread>
 #include <chrono>
@@ -28,7 +28,6 @@ public:
     const std::string& GetCredUri() const { return cred_uri_; }
 
 private:
-
     const std::string awsIotThingName_ = std::getenv("AWS_IOT_THING_NAME") ? std::getenv("AWS_IOT_THING_NAME") : "";
     const std::string gg_version_ = std::getenv("GGC_VERSION") ? std::getenv("GGC_VERSION") : "";
     const std::string region_ = std::getenv("AWS_REGION") ? std::getenv("AWS_REGION") : "";

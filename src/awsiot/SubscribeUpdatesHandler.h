@@ -2,9 +2,9 @@
 #define SUBSCRIBE_UPDATES_HANDLER_H
 
 #include <iostream>
-#include <aws/greengrass/ipc/SubscribeToComponentUpdatesStreamHandler.h>
+#include <aws/greengrass/GreengrassCoreIpcModel.h>
 
-class SubscribeUpdatesHandler : public aws::greengrass::ipc::SubscribeToComponentUpdatesStreamHandler {
+class SubscribeUpdatesHandler : public Aws::Greengrass::ipc::SubscribeToComponentUpdatesStreamHandler {
 public:
     virtual ~SubscribeUpdatesHandler();
 
@@ -13,12 +13,12 @@ public:
 private:
     GreengrassCoreIpcClient *ipcClient;
 
-    void OnStreamEvent(ComponentUpdatePolicyEvents *response) override;
+    void OnStreamEvent(Aws::Greengrass::ComponentUpdatePolicyEvents *response) override;
     void deferUpdate(Aws::Crt::String deploymentId);
     void acknowledgeUpdate(Aws::Crt::String deploymentId);
-    bool OnStreamError(OperationError *error) override;
-    bool OnStreamError(ServiceError *error) override;
-    bool OnStreamError(ResourceNotFoundError *error) override;
+    bool OnStreamError(Aws::Greengrass::OperationError *error) override;
+    bool OnStreamError(Aws::Greengrass::ServiceError *error) override;
+    bool OnStreamError(Aws::Greengrass::ResourceNotFoundError *error) override;
     void OnStreamClosed() override;
 };
 

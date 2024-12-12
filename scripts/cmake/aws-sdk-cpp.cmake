@@ -2,7 +2,8 @@ include(ExternalProject)
 
 message(STATUS "Added aws-sdk-cpp to external submodules")
 
-ExternalProject_Add(aws-sdk-cpp
+ExternalProject_Add(
+    aws-sdk-cpp
     GIT_REPOSITORY https://github.com/aws/aws-sdk-cpp
     GIT_TAG 1.11.434
     GIT_SUBMODULES_RECURSE 1
@@ -26,5 +27,3 @@ ExternalProject_Add(aws-sdk-cpp
     UPDATE_DISCONNECTED 1
     BUILD_ALWAYS 0
 )
-
-# add_dependencies(aws-sdk-cpp zlib curl)

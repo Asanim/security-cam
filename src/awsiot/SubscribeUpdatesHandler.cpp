@@ -9,7 +9,7 @@ bool SubscribeUpdatesHandler::IsUpdateReady() {
     return true;
 }
 
-void SubscribeUpdatesHandler::OnStreamEvent(ComponentUpdatePolicyEvents *response) {
+void SubscribeUpdatesHandler::OnStreamEvent(Aws::Greengrass::ComponentUpdatePolicyEvents *response) {
     try {
         if (response->GetPreUpdateEvent().has_value()) {
             if (IsUpdateReady()) {
@@ -36,19 +36,19 @@ void SubscribeUpdatesHandler::acknowledgeUpdate(Aws::Crt::String deploymentId) {
     std::cout << "Acknowledging deployment: " << deploymentId << std::endl;
 }
 
-bool SubscribeUpdatesHandler::OnStreamError(OperationError *error) {
+bool SubscribeUpdatesHandler::OnStreamError(Aws::Greengrass::OperationError *error) {
     std::cerr << "Operation error" << error->GetMessage().value() << std::endl;
     // Handle error.
     return false;  // Return true to close stream, false to keep stream open.
 }
 
-bool SubscribeUpdatesHandler::OnStreamError(ServiceError *error) {
+bool SubscribeUpdatesHandler::OnStreamError(Aws::Greengrass::ServiceError *error) {
     std::cerr << "Operation error" << error->GetMessage().value() << std::endl;
     // Handle error.
     return false;  // Return true to close stream, false to keep stream open.
 }
 
-bool SubscribeUpdatesHandler::OnStreamError(ResourceNotFoundError *error) {
+bool SubscribeUpdatesHandler::OnStreamError(Aws::Greengrass::ResourceNotFoundError *error) {
     std::cerr << "Operation error" << error->GetMessage().value() << std::endl;
     // Handle error.
     return false;  // Return true to close stream, false to keep stream open.

@@ -20,9 +20,9 @@
 #define SUBSCRIBE_RESPONSE_HANDLER_H
 
 #include <iostream>
-#include <aws/greengrass/streammanager/SubscribeToTopicStreamHandler.h>
+#include <aws/greengrass/GreengrassCoreIpcModel.h>
 
-class SubscribeResponseHandler : public aws::greengrass::SubscribeToTopicStreamHandler {
+class SubscribeResponseHandler : public Aws::Greengrass::SubscribeToTopicStreamHandler {
 public:
     virtual ~SubscribeResponseHandler() {}
 
