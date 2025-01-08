@@ -16,5 +16,12 @@ include(scripts/cmake/can-utils.cmake)
 include(scripts/cmake/sqlite.cmake)
 include(scripts/cmake/opencv.cmake)
 include(scripts/cmake/zlib.cmake)
+include(scripts/cmake/coral-ai.cmake)
+include(scripts/cmake/coral-edge-tpu.cmake)
+include(scripts/cmake/coral-flat-buffers.cmake)
+include(scripts/cmake/coral-tensorflow-lite.cmake)
+
+include(examples/CMakeLists.txt)
+
 
 add_subdirectory(src)
