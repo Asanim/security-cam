@@ -17,10 +17,7 @@ set(SOURCES
 find_package(OpenCV REQUIRED)
 
 set(AWS_IOT_SOURCES
-    awsiot/IpcClientLifecycleHandler.cpp
-    awsiot/IpcClientPublisher.cpp
-    awsiot/SubscribeResponseHandler.cpp
-    awsiot/SubscribeUpdatesHandler.cpp
+    awsiot/mqtt_handler.cpp
 )
 
 ## Add the AWS Library 

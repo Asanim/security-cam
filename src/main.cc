@@ -1,83 +1,120 @@
 #include <iostream>
+#include <thread>
+#include <vector>
 #include <chrono>
 #include <opencv2/opencv.hpp>
 
 constexpr int ALG_IMAGE_WIDTH = 300;
 constexpr int ALG_IMAGE_HEIGHT = 300;
 
-int main() {
-    // Define camera ports
-    std::string camera_ports[4] = {"/dev/video0", "/dev/video4", "/dev/video10", "/dev/video14"};
-    cv::VideoCapture cap[4];  // Declare an array for multiple VideoCapture instances
+class CameraProcessor
+{
+public:
+    CameraProcessor(const std::string &port) : camera_port(port), stop_thread(false) {}
 
-    // Open each camera stream
-    for (int i = 0; i < 4; ++i) {
-        cap[i].open(camera_ports[i]);
-        if (!cap[i].isOpened()) {
-            std::cout << "No video stream detected on " << camera_ports[i] << std::endl;
-        } else {
-            std::cout << "\n============================================" << std::endl;
-            std::cout << "Found Camera: " << camera_ports[i] << std::endl;
-            std::cout << "============================================" << std::endl;
+    void Start()
+    {
+        processing_thread = std::thread(&CameraProcessor::ProcessFrames, this);
+    }
+
+    void Stop()
+    {
+        stop_thread = true;
+        if (processing_thread.joinable())
+        {
+            processing_thread.join();
         }
     }
 
-    cv::Mat orig_img, img;
-    while (true) {
-        // Capture and process frames for each camera
-        for (int i = 0; i < 4; ++i) {
-            if (!cap[i].isOpened()) continue;
+    ~CameraProcessor()
+    {
+        Stop();
+        if (cap.isOpened())
+        {
+            cap.release();
+        }
+    }
 
+private:
+    std::string camera_port;
+    cv::VideoCapture cap;
+    std::thread processing_thread;
+    bool stop_thread;
+
+    void ProcessFrames()
+    {
+        cap.open(camera_port);
+        if (!cap.isOpened())
+        {
+            std::cerr << "No video stream detected on " << camera_port << std::endl;
+            return;
+        }
+
+        std::cout << "\n============================================" << std::endl;
+        std::cout << "Found Camera: " << camera_port << std::endl;
+        std::cout << "============================================" << std::endl;
+
+        cv::Mat orig_img, img;
+
+        while (!stop_thread)
+        {
             auto start_milli = std::chrono::system_clock::now();
 
-            // Read frame from camera
-            cap[i] >> orig_img;
-            if (orig_img.empty()) {
-                std::cerr << "ERROR! blank frame grabbed from " << camera_ports[i] << std::endl;
+            cap >> orig_img;
+            if (orig_img.empty())
+            {
+                std::cerr << "ERROR! blank frame grabbed from " << camera_port << std::endl;
                 continue;
             }
 
             auto image_read_milli = std::chrono::system_clock::now();
-
-            // Resize image
             cv::resize(orig_img, img, cv::Size(ALG_IMAGE_WIDTH, ALG_IMAGE_HEIGHT), 0, 0, cv::INTER_LINEAR);
             auto image_resize_milli = std::chrono::system_clock::now();
 
-            // Placeholder for main algorithm (e.g., inference)
-            // inference.run(img); // Replace with actual inference logic if needed
+            // Placeholder for main algorithm
             auto alg_main_milli = std::chrono::system_clock::now();
 
             // Placeholder for post-processing
-            // inference.post_process(); // Replace with actual post-processing logic if needed
             auto end_milli = std::chrono::system_clock::now();
 
-            // Print timing for each processing stage
             std::cout << "image_read_milli: " << std::chrono::duration_cast<std::chrono::milliseconds>(image_read_milli - start_milli).count() << " ms\n";
             std::cout << "image_resize_milli: " << std::chrono::duration_cast<std::chrono::milliseconds>(image_resize_milli - image_read_milli).count() << " ms\n";
             std::cout << "alg_main_milli: " << std::chrono::duration_cast<std::chrono::milliseconds>(alg_main_milli - image_resize_milli).count() << " ms\n";
             std::cout << "total: " << std::chrono::duration_cast<std::chrono::milliseconds>(end_milli - start_milli).count() << " ms\n";
 
-            // Calculate FPS
             auto real_end_milli = std::chrono::system_clock::now();
             float fps = 1000.0f / std::chrono::duration_cast<std::chrono::milliseconds>(real_end_milli - start_milli).count();
             std::cout << "fps: " << fps << "\n\n";
-        }
 
-        // Release images
-        orig_img.release();
-        img.release();
-
-        // Delay for a short while, for demonstration
-        if (cv::waitKey(1) >= 0) break;  // Press any key to exit
-    }
-
-    // Release cameras
-    for (int i = 0; i < 4; ++i) {
-        if (cap[i].isOpened()) {
-            cap[i].release();
+            orig_img.release();
+            img.release();
         }
     }
+};
 
-    std::cout << "Release complete" << std::endl;
+int main()
+{
+    std::vector<std::string> camera_ports = {"/dev/video0", "/dev/video4", "/dev/video10", "/dev/video14"};
+    std::vector<CameraProcessor> cameras;
+
+    for (const auto &port : camera_ports)
+    {
+        cameras.emplace_back(port);
+    }
+
+    for (auto &camera : cameras)
+    {
+        camera.Start();
+    }
+
+    std::cout << "Press any key to stop..." << std::endl;
+    std::cin.get();
+
+    for (auto &camera : cameras)
+    {
+        camera.Stop();
+    }
+
+    std::cout << "All cameras stopped." << std::endl;
     return 0;
 }
