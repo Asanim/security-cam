@@ -23,3 +23,5 @@ ExternalProject_Add(
     UPDATE_DISCONNECTED 1
     BUILD_ALWAYS 0
 )
+
+add_dependencies(coral-ai zlib)

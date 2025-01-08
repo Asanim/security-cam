@@ -20,6 +20,7 @@ include(scripts/cmake/coral-ai.cmake)
 include(scripts/cmake/coral-edge-tpu.cmake)
 include(scripts/cmake/coral-flat-buffers.cmake)
 include(scripts/cmake/coral-tensorflow-lite.cmake)
+include(scripts/cmake/libusb.cmake)
 
 include(examples/CMakeLists.txt)
 
