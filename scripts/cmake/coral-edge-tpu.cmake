@@ -20,7 +20,7 @@ ExternalProject_Add(
     UPDATE_DISCONNECTED 1
     BUILD_ALWAYS        0
 )
-# Step to copy the shared library to the install directory
+# Copy the shared library to the install directory
 add_custom_command(
     TARGET edgetpu-runtime POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory
@@ -29,7 +29,7 @@ add_custom_command(
     COMMENT "Copying EdgeTPU shared library to install directory"
 )
 
-# Step to copy the header files to the install directory
+# Copy the header files to the install directory
 add_custom_command(
     TARGET edgetpu-runtime POST_BUILD
     COMMAND ${CMAKE_COMMAND} -E copy_directory

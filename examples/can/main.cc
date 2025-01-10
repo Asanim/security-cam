@@ -148,7 +148,7 @@ int main() {
         struct can_frame received_frame;
         receive_can_message(scheduler.can_socket_, received_frame);
       },
-      std::chrono::milliseconds(500));
+      std::chrono::milliseconds(10));
 
   // Add more tasks for heartbeat messages or other periodic sends if necessary
 

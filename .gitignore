@@ -14,3 +14,4 @@ deployment.json
 artifact
 build
 archive*
+.tflite
