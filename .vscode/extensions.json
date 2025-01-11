@@ -1,0 +1,18 @@
+{
+    "recommendations": [
+        "twxs.cmake",
+        "streetsidesoftware.code-spell-checker",
+        "ms-vscode.cpptools",
+        "cschlosser.doxdocgen",
+        "sonarsource.sonarlint-vscode",
+        "kelvin.vscode-sshfs",
+        "ms-vscode.cmake-tools",
+        "davidanson.vscode-markdownlint",
+        "github.copilot-chat",
+        "github.copilot",
+        "ms-vscode.cpptools-extension-pack",
+        "yzane.markdown-pdf",
+        "bdavs.expect",
+        "ms-vscode-remote.remote-wsl"
+    ]
+}

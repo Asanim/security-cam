@@ -1,0 +1,113 @@
+{
+    // See https://go.microsoft.com/fwlink/?LinkId=733558
+    // for the documentation about the tasks.json format
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Make on Host",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/build && make",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Make for ARM",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/build && cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_TOOLCHAIN_FILE=../scripts/cmake/arm_toolchain.cmake .. && make",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "CMake Debug",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/build && cmake -DCMAKE_BUILD_TYPE=Debug .. && make",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "CMake Release",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/build && cmake -DCMAKE_BUILD_TYPE=Release .. && make",
+            "problemMatcher": [],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        },
+        {
+            "label": "Copy to target",
+            "type": "shell",
+            "command": "scp ${workspaceFolder}/build/bin/sentinel_vision visionai@target:. && scp ${workspaceFolder}/build/bin/tests visionai@target:. && scp ${workspaceFolder}/build/external/install/usr/local/lib/libglog.so.1 visionai@target:. && scp ${workspaceFolder}/build/database/settings.db visionai@target:.",
+            "problemMatcher": [],
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Debug on target",
+            "type": "shell",
+            "command": "scp ${workspaceFolder}/build/bin/sentinel_vision visionai@target:. && scp ${workspaceFolder}/build/external/install/usr/local/lib/libglog.so.1 visionai@target:. && ssh -t visionai@target 'bash -s' < ${workspaceFolder}/scripts/target_debug.sh ",
+            "problemMatcher": [],
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Run on target",
+            "type": "shell",
+            "command": "scp ${workspaceFolder}/build/bin/sentinel_vision visionai@target:. && scp ${workspaceFolder}/build/external/install/usr/local/lib/libglog.so.1 visionai@target:. && ssh -t visionai@target 'bash -s' < ${workspaceFolder}/scripts/target_execute.sh ",
+            "problemMatcher": [],
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Tests on target",
+            "type": "shell",
+            "command": "scp ${workspaceFolder}/build/bin/tests visionai@target:. && scp ${workspaceFolder}/build/external/install/usr/local/lib/libglog.so.1 visionai@target:. && ssh -t visionai@target 'bash -s' < ${workspaceFolder}/scripts/target_execute_tests.sh ",
+            "problemMatcher": [],
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Install on target",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/build && cpack && make datasets && scp ${workspaceFolder}/build/*.tar.gz ${workspaceFolder}/scripts/target_install.sh ${workspaceFolder}/scripts/target_emmc_execute.sh visionai@target:/opt && ${workspaceFolder}/scripts/./target_install_tests.expect",
+            "problemMatcher": [],
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "Install and Run on target ARM",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/build && cpack && make datasets && scp ${workspaceFolder}/build/*.tar.gz ${workspaceFolder}/scripts/target_install.sh ${workspaceFolder}/scripts/target_emmc_execute.sh visionai@target:/opt && ${workspaceFolder}/scripts/./target_run_tests.expect",
+            "problemMatcher": [],
+            "group": "test",
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        }
+    ]
+}

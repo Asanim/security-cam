@@ -1,0 +1,29 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/usr/include/c++/11",
+                "/usr/include/x86_64-linux-gnu/c++/11",
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/src/sqlite-crud/src",
+                "/tools/toolchain/gcc-sigmastar-9.1.0-2020.07-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/include/c++/9.1.0",
+                "/tools/toolchain/gcc-sigmastar-9.1.0-2020.07-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/include/c++/9.1.0/tr1",
+                "/tools/toolchain/gcc-sigmastar-9.1.0-2020.07-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/include/c++/9.1.0/aarch64-linux-gnu",
+                "/tools/toolchain/gcc-sigmastar-9.1.0-2020.07-x86_64_aarch64-linux-gnu/aarch64-linux-gnu/include/c++/9.1.0/parallel"
+            ],
+            "defines": [
+                "__arm__",
+                "__ARM_PCS_VFP"
+            ],
+            "compilerPath": "",
+            "cStandard": "c17",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "linux-clang-x64",
+            "compileCommands": "${workspaceFolder}/build/compile_commands.json",
+            "configurationProvider": "ms-vscode.cmake-tools"
+        }
+    ],
+    "version": 4
+}
