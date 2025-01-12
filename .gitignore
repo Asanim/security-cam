@@ -12,7 +12,7 @@ recipe.json
 deployment.json
 
 artifact
-build
+build*
 archive*
 .tflite
-backdate
+backdate*

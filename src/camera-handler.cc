@@ -22,6 +22,10 @@
 #include <chrono>
 #include <opencv2/opencv.hpp>
 #include "camera-handler.h"
+#include "web-streamer.h"
+
+extern WebStreamer webStreamer;
+
 CameraProcessor::CameraProcessor(const std::string &port) : camera_port(port), stop_thread(false) {}
 
 void CameraProcessor::Start()
@@ -91,6 +95,8 @@ void CameraProcessor::ProcessFrames()
         auto real_end_milli = std::chrono::system_clock::now();
         float fps = 1000.0f / std::chrono::duration_cast<std::chrono::milliseconds>(real_end_milli - start_milli).count();
         std::cout << "fps: " << fps << "\n\n";
+
+        webStreamer.UpdateFrame(orig_img);
 
         orig_img.release();
         img.release();
