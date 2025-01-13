@@ -13,6 +13,7 @@ set(LIBRARIES_TO_LINK
 set(SOURCES
     ${CMAKE_SOURCE_DIR}/src/web-streamer.cc
     ${CMAKE_SOURCE_DIR}/src/camera-handler.cc
+    ${CMAKE_SOURCE_DIR}/src/alg/inference-coral.cc
 )
 
 find_package(OpenCV REQUIRED)
@@ -50,8 +51,9 @@ add_executable(${PROJECT_NAME}
     ${SOURCES}
 )
 
-add_dependencies(${PROJECT_NAME} opencv)
+add_dependencies(${PROJECT_NAME} opencv coral-ai)
 
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_BINARY_DIR}/external/install/include
+    ${CMAKE_BINARY_DIR}/external/install/include/opencv4
 )
