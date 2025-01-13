@@ -17,8 +17,8 @@
  */
 
  
-#ifndef FIFO_QUEUE_H
-#define FIFO_QUEUE_H
+#ifndef ALG_FIFO_QUEUE_H
+#define ALG_FIFO_QUEUE_H
 
 #include <iostream>
 #include <string>
@@ -52,4 +52,4 @@ public:
     void clear();
 };
 
-#endif // FIFO_QUEUE_H
+#endif // ALG_FIFO_QUEUE_H
