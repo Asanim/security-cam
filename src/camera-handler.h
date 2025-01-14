@@ -23,13 +23,13 @@
 #include <thread>
 #include <opencv2/opencv.hpp>
 
-class CameraProcessor
+class CameraHandler
 {
 public:
-    CameraProcessor(const std::string &port);
+    CameraHandler(const std::string &port);
     void Start();
     void Stop();
-    ~CameraProcessor();
+    ~CameraHandler();
 
 private:
     std::string camera_port;

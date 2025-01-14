@@ -26,14 +26,14 @@
 
 extern WebStreamer webStreamer;
 
-CameraProcessor::CameraProcessor(const std::string &port) : camera_port(port), stop_thread(false) {}
+CameraHandler::CameraHandler(const std::string &port) : camera_port(port), stop_thread(false) {}
 
-void CameraProcessor::Start()
+void CameraHandler::Start()
 {
-    processing_thread = std::thread(&CameraProcessor::ProcessFrames, this);
+    processing_thread = std::thread(&CameraHandler::ProcessFrames, this);
 }
 
-void CameraProcessor::Stop()
+void CameraHandler::Stop()
 {
     stop_thread = true;
     if (processing_thread.joinable())
@@ -42,7 +42,7 @@ void CameraProcessor::Stop()
     }
 }
 
-CameraProcessor::~CameraProcessor()
+CameraHandler::~CameraHandler()
 {
     Stop();
     if (cap.isOpened())
@@ -51,7 +51,7 @@ CameraProcessor::~CameraProcessor()
     }
 }
 
-void CameraProcessor::ProcessFrames()
+void CameraHandler::ProcessFrames()
 {
     cap.open(camera_port);
     if (!cap.isOpened())
