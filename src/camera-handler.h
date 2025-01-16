@@ -16,7 +16,7 @@
  *  \file camera-handler.h
  */
 
- #ifndef CAMERA_HANDLER_H
+#ifndef CAMERA_HANDLER_H
 #define CAMERA_HANDLER_H
 
 #include <string>
